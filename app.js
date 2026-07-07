@@ -412,9 +412,8 @@ function renderRoughAnnotations() {
   clearAnnotations();
 
   const title = els.title;
-  const coreModel = document.querySelector(".study-strip");
 
-  if (!title || !coreModel) return;
+  if (!title) return;
 
   activeAnnotations = [
     annotate(title, {
@@ -422,15 +421,6 @@ function renderRoughAnnotations() {
       color: "#1f5e9f",
       strokeWidth: 2,
       padding: 2,
-      iterations: 1,
-      animationDuration: 0,
-    }),
-    annotate(coreModel, {
-      type: "bracket",
-      brackets: ["left"],
-      color: "rgba(31, 94, 159, 0.72)",
-      strokeWidth: 1.5,
-      padding: 7,
       iterations: 1,
       animationDuration: 0,
     }),

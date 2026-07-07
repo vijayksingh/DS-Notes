@@ -43,6 +43,15 @@ Flashcards are the main study object.
 - Answers reveal inside the card language, not as alert panels.
 - Card movement should feel like moving through a small stack.
 
+### Core Model
+
+The core model is the fastest path to the problem intuition.
+
+- Keep it compact and close to the problem header.
+- Use a stable ink rail instead of animated or generated brackets.
+- Labels should help scanning; the invariant and avoid text are the actual content.
+- Do not frame it as a card. It belongs on the notebook page itself.
+
 ### Field Notes
 
 Field notes are the bottom revision lists.
