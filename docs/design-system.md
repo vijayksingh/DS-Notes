@@ -80,6 +80,7 @@ Flashcards are the main study object.
 - On mobile, flashcard controls stay in one compact row so the card itself remains near the top of the revision flow.
 - Mobile flashcard controls use transparent 44px hit areas. Quiet controls should not become tiny controls.
 - Answers reveal inside the card language, not as alert panels.
+- Reserve enough card space for common answers so revealing does not shove the surrounding revision flow around.
 - Card movement should feel like moving through a small stack.
 
 ### Core Model

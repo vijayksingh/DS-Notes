@@ -687,7 +687,7 @@ a:hover {
 
 .flashcard {
   position: relative;
-  min-height: 12rem;
+  min-height: 14rem;
   padding: 2.1rem var(--space-xl) 1.65rem 3rem;
   border: 0;
   border-radius: 0.2rem 0.16rem 0.24rem 0.18rem;
@@ -1329,7 +1329,7 @@ a:hover {
   }
 
   .flashcard {
-    min-height: 14rem;
+    min-height: 18.25rem;
     padding: var(--space-lg);
   }
 }
