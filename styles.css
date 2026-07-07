@@ -5,10 +5,15 @@
   --desk: #e8eee9;
   --paper: #fffdf4;
   --paper-soft: #fff8dc;
+  --paper-card: #fffef9;
+  --paper-card-layer-1: #f7f8f5;
+  --paper-card-layer-2: #f1f2ee;
   --surface-panel: rgb(255 253 246 / 94%);
   --surface-control: rgb(255 253 246 / 62%);
   --surface-control-hover: rgb(255 253 246 / 82%);
   --surface-selected: rgb(228 239 253 / 44%);
+  --surface-highlight: rgb(63 145 216 / 18%);
+  --rule-soft: rgb(83 103 126 / 18%);
   --ink: #182334;
   --text: #344354;
   --muted: #687789;
@@ -583,7 +588,7 @@ a:hover {
   background:
     linear-gradient(90deg, transparent 0 2.15rem, rgb(190 77 70 / 12%) 2.15rem 2.2rem, transparent 2.2rem),
     repeating-linear-gradient(0deg, transparent 0 1.42rem, rgb(64 86 107 / 8%) 1.42rem 1.47rem),
-    #f7f8f5;
+    var(--paper-card-layer-1);
   transform: translate(0.5rem, 0.42rem) rotate(0.2deg);
 }
 
@@ -592,7 +597,7 @@ a:hover {
   background:
     linear-gradient(90deg, transparent 0 2.1rem, rgb(190 77 70 / 8%) 2.1rem 2.15rem, transparent 2.15rem),
     repeating-linear-gradient(0deg, transparent 0 1.42rem, rgb(64 86 107 / 6%) 1.42rem 1.47rem),
-    #f1f2ee;
+    var(--paper-card-layer-2);
   transform: translate(0.82rem, 0.78rem) rotate(-0.24deg);
 }
 
@@ -605,7 +610,7 @@ a:hover {
   background:
     linear-gradient(90deg, transparent 0 2.2rem, rgb(190 77 70 / 22%) 2.2rem 2.25rem, transparent 2.25rem),
     repeating-linear-gradient(0deg, transparent 0 1.42rem, rgb(64 86 107 / 13%) 1.42rem 1.47rem),
-    #fffef9;
+    var(--paper-card);
   background-position: 0 0, 0 0.95rem, 0 0;
   box-shadow: none;
   transform: none;
@@ -653,7 +658,7 @@ a:hover {
   max-width: 35rem;
   margin-top: var(--space-md);
   padding: 0.85rem 0.35rem 0 0;
-  border-top: 1.5px dashed rgb(83 103 126 / 28%);
+  border-top: 1.5px dashed var(--rule-soft);
   border-left: 0;
   border-radius: 0;
   background: transparent;
@@ -767,27 +772,56 @@ a:hover {
 
 .notes-grid article {
   display: grid;
-  gap: var(--space-sm);
+  gap: 0.7rem;
   align-content: start;
+  counter-reset: field-note;
 }
 
 .notes-grid h3 {
   width: fit-content;
   font-size: var(--text-lg);
   font-weight: 400;
+  background:
+    linear-gradient(
+      180deg,
+      transparent 0 52%,
+      var(--surface-highlight) 52% 84%,
+      transparent 84% 100%
+    );
 }
 
 .notes-grid ul {
   display: grid;
-  gap: 0;
+  gap: 0.45rem;
   margin: 0;
-  padding-left: var(--space-lg);
+  padding: 0;
+  list-style: none;
 }
 
 .notes-grid li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.55rem minmax(0, 1fr);
+  gap: 0.25rem;
+  counter-increment: field-note;
   max-width: 68ch;
   font-size: var(--text-body);
-  line-height: 1.7;
+  line-height: 1.58;
+}
+
+.notes-grid li::before {
+  content: "•";
+  color: var(--accent);
+  font-family: var(--hand);
+  font-size: var(--text-sm);
+  line-height: inherit;
+}
+
+.notes-grid article:nth-child(2) li::before {
+  content: counter(field-note, decimal-leading-zero);
+  color: var(--muted);
+  font-size: var(--text-xs);
+  font-variant-numeric: tabular-nums;
 }
 
 @media (max-width: 68rem) {
@@ -958,6 +992,10 @@ a:hover {
   .notes-grid h3 {
     width: auto;
     max-width: 100%;
+  }
+
+  .notes-grid h3 {
+    width: fit-content;
   }
 
   .study-strip > div {
