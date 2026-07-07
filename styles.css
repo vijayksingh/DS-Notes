@@ -12,7 +12,7 @@
   --surface-panel-quiet: rgb(255 253 246 / 76%);
   --surface-control: rgb(255 253 246 / 62%);
   --surface-control-hover: rgb(255 253 246 / 82%);
-  --surface-selected: rgb(228 239 253 / 44%);
+  --surface-selected: rgb(63 145 216 / 14%);
   --surface-highlight: rgb(63 145 216 / 18%);
   --rule-soft: rgb(83 103 126 / 18%);
   --ink: #182334;
@@ -155,13 +155,11 @@ a:hover {
   height: auto;
   max-height: calc(100vh - var(--space-xl) * 2);
   overflow: visible;
-  border: 1px solid rgb(83 103 126 / 18%);
-  border-radius: var(--radius-panel);
-  background:
-    radial-gradient(circle at 14% 0, rgb(255 255 255 / 68%), transparent 8.5rem),
-    var(--surface-panel-quiet);
-  padding: 1rem;
-  box-shadow: 0 12px 24px rgb(31 41 51 / 6%);
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  padding: 0.35rem 0.15rem;
+  box-shadow: none;
 }
 
 .index-panel {
@@ -180,9 +178,9 @@ a:hover {
 .brand {
   display: grid;
   gap: var(--space-xs);
-  padding-bottom: var(--space-sm);
-  margin-bottom: 0;
-  border-bottom: 0;
+  padding-bottom: var(--space-md);
+  margin-bottom: 0.1rem;
+  border-bottom: 1px dashed rgb(83 103 126 / 18%);
 }
 
 .brand h1,
@@ -223,21 +221,32 @@ a:hover {
 
 .search {
   display: grid;
-  gap: var(--space-xs);
+  gap: 0.3rem;
   margin-bottom: 0;
 }
 
 .search input {
   min-width: 0;
   width: 100%;
-  border: 1.4px solid var(--border-soft);
-  border-radius: var(--radius-control);
-  background: rgb(255 253 246 / 54%);
+  border: 0;
+  border-bottom: 1.5px dashed rgb(83 103 126 / 28%);
+  border-radius: 0;
+  background: transparent;
   color: var(--text);
   font-family: var(--hand);
   font-size: 0.88rem;
-  padding: 0.58rem 0.7rem;
+  padding: 0.42rem 0 0.46rem;
   box-shadow: none;
+}
+
+.search input::placeholder {
+  color: rgb(104 116 130 / 64%);
+}
+
+.search input:focus-visible {
+  outline: none;
+  border-bottom-color: rgb(31 94 159 / 68%);
+  box-shadow: 0 2px 0 rgb(31 94 159 / 13%);
 }
 
 .filters {
@@ -294,8 +303,8 @@ a:hover {
   gap: var(--space-2xs);
   width: 100%;
   min-height: 0;
-  padding: 0.38rem 0.05rem;
-  border-color: transparent;
+  padding: 0.4rem 0;
+  border: 0;
   text-align: left;
   border-radius: 0;
   background: transparent;
@@ -331,8 +340,8 @@ a:hover {
   content: "";
   position: absolute;
   z-index: -1;
-  inset: 52% -0.18rem 12% -0.14rem;
-  background: rgb(63 145 216 / 16%);
+  inset: 58% -0.16rem 8% -0.12rem;
+  background: var(--surface-selected);
   transform: rotate(-0.35deg);
 }
 
@@ -349,7 +358,7 @@ a:hover {
 }
 
 .problem-link small {
-  color: var(--muted);
+  color: rgb(104 116 130 / 86%);
   font-size: 0.71rem;
   line-height: 1.4;
 }
@@ -513,7 +522,7 @@ a:hover {
   grid-template-columns: 1fr;
   gap: 0.24rem;
   max-width: 55rem;
-  padding: 0.12rem 0 0.12rem 1rem;
+  padding: 0.12rem 0;
   border: 0;
   border-radius: 0;
   background: transparent;
@@ -537,17 +546,6 @@ a:hover {
     );
 }
 
-.study-strip::after {
-  content: "";
-  position: absolute;
-  top: 0.12rem;
-  bottom: 0.18rem;
-  left: 0;
-  width: 2px;
-  border-radius: 999px;
-  background: linear-gradient(180deg, var(--accent), rgb(31 94 159 / 18%));
-}
-
 .study-strip > div {
   display: grid;
   grid-template-columns: 6.05rem minmax(0, 1fr);
@@ -555,7 +553,7 @@ a:hover {
   align-items: baseline;
   gap: 0.45rem;
   min-height: 0;
-  padding-left: 0.6rem;
+  padding-left: 0;
   border-right: 0;
 }
 

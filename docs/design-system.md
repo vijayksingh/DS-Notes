@@ -19,7 +19,7 @@ Decoration is allowed only when it supports recall or orientation.
 
 The first shared token layer lives in `styles.css`.
 
-- `--surface-panel`: floating index/sidebar paper.
+- `--surface-panel`: warm paper panels outside the index.
 - `--surface-panel-quiet`: quieter navigation paper for desktop index surfaces.
 - `--surface-control`: quiet controls and selected rows.
 - `--surface-highlight`: inline study emphasis and section headings.
@@ -45,6 +45,7 @@ The full interface sits on a centered desk, not against the browser edge.
 The sidebar is an index tray, not a second notebook page.
 
 - It should wrap its content instead of filling the viewport with empty paper.
+- On desktop, the index is a quiet table-of-contents margin, not a floating card.
 - Search, filters, and selected problem rows should be quiet until interacted with.
 - Active states use blue ink or highlighter marks, not heavy filled buttons.
 - On desktop, keep the tray visible but visually quieter than the notebook page.
@@ -52,10 +53,12 @@ The sidebar is an index tray, not a second notebook page.
 - On narrow tablets, switch the index to a two-column strip before controls get squeezed. Never keep a search input so narrow that the placeholder becomes clipped.
 - On mobile, the tray becomes an unframed quick-index disclosure. The collapsed state shows the current problem and a browse affordance; search and filters live inside the expanded utility strip.
 - Mobile search is a notebook field, not a card: transparent background, no rounded box, and only a quiet baseline for orientation.
+- Search fields use a baseline treatment across breakpoints. Do not reintroduce rounded search boxes inside the index.
 - Mobile search focus strengthens the baseline instead of drawing a rectangle around the field.
 - Search results must never collapse into blank space. Show a short empty state when nothing matches.
 - Empty index states explain the miss and offer a quiet reset action; never imply the archive itself is empty.
 - The active problem is marked with a title highlighter only. Do not use a left rail or card-like selected row inside the index.
+- The index should never use a colored left rail for selection. Selection belongs to the text, not the container.
 
 ### Pattern Filters
 
@@ -95,7 +98,7 @@ Flashcards are the main study object.
 The core model is the fastest path to the problem intuition.
 
 - Keep it compact and close to the problem header.
-- Use a stable ink rail instead of animated or generated brackets.
+- Do not use a colored left rail here; the section label and compact rows should carry hierarchy.
 - Labels should help scanning; the invariant and avoid text are the actual content.
 - Treat the pattern as the recognition hook. Invariant and avoid text should read like body notes, not three equally bold headings.
 - Do not frame it as a card. It belongs on the notebook page itself.
