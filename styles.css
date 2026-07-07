@@ -1414,3 +1414,21 @@ a:hover {
     min-height: 25.25rem;
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.001ms !important;
+    transition-delay: 0ms !important;
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+
+  .flashcard,
+  .flashcard-ghost,
+  .deck-layer {
+    will-change: auto;
+  }
+}
