@@ -1065,7 +1065,8 @@ a:hover {
 
   .study-strip > div,
   .study-strip > div + div {
-    grid-template-columns: 1fr;
+    grid-template-columns: 5.7rem minmax(0, 1fr);
+    gap: 0.38rem;
     padding: 0;
     border-right: 0;
     border-bottom: 0;

@@ -102,6 +102,7 @@ The core model is the fastest path to the problem intuition.
 - Labels should help scanning; the invariant and avoid text are the actual content.
 - Treat the pattern as the recognition hook. Invariant and avoid text should read like body notes, not three equally bold headings.
 - Do not frame it as a card. It belongs on the notebook page itself.
+- On tablet, preserve label/value rows. Do not stack labels above values unless the viewport is truly too narrow.
 - On mobile, keep label/value rows compact. Do not stack every label above its value unless the content would otherwise overflow.
 
 ### Field Notes
