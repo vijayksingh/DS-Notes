@@ -74,6 +74,7 @@ Filters are navigation aids, not primary actions.
 The question bank is a table of contents for the memory card stack.
 
 - It should orient the current card without becoming the main visual target.
+- Prompt text uses the body font for scan speed. Keep handwriting for labels and numbers, not multi-line prompt copy.
 - Active state uses the prompt number and a low inline highlighter. Avoid full blue link styling.
 - Prompt rows stay unboxed; hover can add a faint inline mark but not a filled row.
 - Keyboard focus follows the same inline system: strengthen the prompt text highlighter and number, never outline the full row.

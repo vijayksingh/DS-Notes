@@ -864,9 +864,10 @@ a:hover {
   background: transparent;
   text-align: left;
   color: var(--text);
-  font-size: var(--text-sm);
+  font-family: var(--round);
+  font-size: 0.9rem;
   font-weight: 400;
-  line-height: 1.35;
+  line-height: 1.42;
   box-shadow: none;
   transform: none;
 }
@@ -887,9 +888,9 @@ a:hover {
   background:
     linear-gradient(
       180deg,
-      transparent 0 58%,
-      rgb(83 103 126 / 10%) 58% 84%,
-      transparent 84% 100%
+      transparent 0 64%,
+      rgb(83 103 126 / 9%) 64% 88%,
+      transparent 88% 100%
     );
 }
 
@@ -909,9 +910,9 @@ a:hover {
   background:
     linear-gradient(
       180deg,
-      transparent 0 58%,
-      var(--surface-highlight) 58% 84%,
-      transparent 84% 100%
+      transparent 0 64%,
+      rgb(63 145 216 / 14%) 64% 88%,
+      transparent 88% 100%
     );
 }
 
@@ -920,9 +921,9 @@ a:hover {
   background:
     linear-gradient(
       180deg,
-      transparent 0 50%,
-      rgb(63 145 216 / 23%) 50% 88%,
-      transparent 88% 100%
+      transparent 0 60%,
+      rgb(63 145 216 / 20%) 60% 90%,
+      transparent 90% 100%
     );
 }
 
