@@ -28,6 +28,14 @@ The first shared token layer lives in `styles.css`.
 
 ## Components
 
+### Workbench
+
+The full interface sits on a centered desk, not against the browser edge.
+
+- Keep the sidebar and notebook page together as one centered workbench on wide desktop screens.
+- Do not let the notebook remain pinned left with a large empty right side.
+- The notebook page can keep a readable max width; center the larger composition instead of stretching the page.
+
 ### Index Tray
 
 The sidebar is an index tray, not a second notebook page.

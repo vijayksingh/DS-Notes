@@ -142,7 +142,9 @@ a:hover {
   grid-template-columns: minmax(15.5rem, 18rem) minmax(0, 1fr);
   align-items: start;
   gap: var(--space-xl);
+  width: min(100%, 90rem);
   min-height: 100vh;
+  margin: 0 auto;
   padding: var(--space-xl);
 }
 
