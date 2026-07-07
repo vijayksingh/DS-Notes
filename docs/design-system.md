@@ -78,9 +78,11 @@ Flashcards are the main study object.
 - Controls stay visually secondary. Reveal/Hide is plain ink text with a subtle underline, never a filled button or loud highlighter.
 - Toolbar focus should strengthen the ink mark on the focused control instead of adding button chrome.
 - On mobile, flashcard controls stay in one compact row so the card itself remains near the top of the revision flow.
+- On narrow mobile, abbreviate toolbar labels before allowing counters to wrap.
 - Mobile flashcard controls use transparent 44px hit areas. Quiet controls should not become tiny controls.
 - Answers reveal inside the card language, not as alert panels.
 - Reserve enough card space for common answers so revealing does not shove the surrounding revision flow around.
+- Extra-narrow phones can use a taller ruled card to preserve reveal stability; keep the space visually useful as writing room.
 - Card movement should feel like moving through a small stack.
 
 ### Core Model

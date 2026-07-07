@@ -1305,6 +1305,26 @@ a:hover {
     gap: var(--space-xs);
   }
 
+  .card-toolbar > div:first-child {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.28rem;
+    min-width: 0;
+  }
+
+  .card-toolbar .label {
+    font-size: 0;
+  }
+
+  .card-toolbar .label::after {
+    content: "Card";
+    font-size: 0.68rem;
+  }
+
+  #cardCounter {
+    white-space: nowrap;
+  }
+
   .toolbar-actions {
     width: auto;
     justify-content: flex-end;
@@ -1331,5 +1351,11 @@ a:hover {
   .flashcard {
     min-height: 18.25rem;
     padding: var(--space-lg);
+  }
+}
+
+@media (max-width: 22rem) {
+  .flashcard {
+    min-height: 25.25rem;
   }
 }
