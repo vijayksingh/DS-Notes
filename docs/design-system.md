@@ -57,6 +57,7 @@ Filters are navigation aids, not primary actions.
 - Use handwritten chip labels with transparent default states.
 - The active filter uses a content-width highlighter mark.
 - On mobile, filters stay in one short row so opening the index does not become a full-screen form.
+- Mobile filter chips still need 44px tap targets even when their visual treatment stays quiet.
 
 ### Question Bank
 
@@ -72,6 +73,7 @@ Flashcards are the main study object.
 
 - Controls stay visually secondary. Reveal/Hide is plain ink text with a subtle underline, never a filled button or loud highlighter.
 - On mobile, flashcard controls stay in one compact row so the card itself remains near the top of the revision flow.
+- Mobile flashcard controls use transparent 44px hit areas. Quiet controls should not become tiny controls.
 - Answers reveal inside the card language, not as alert panels.
 - Card movement should feel like moving through a small stack.
 

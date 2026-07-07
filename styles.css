@@ -1147,7 +1147,8 @@ a:hover {
 
   .chip {
     flex: 0 0 auto;
-    min-height: 2.35rem;
+    min-width: 2.75rem;
+    min-height: 2.75rem;
     padding-inline: 0.36rem;
     font-size: 0.82rem;
     white-space: nowrap;
@@ -1241,17 +1242,18 @@ a:hover {
 
   .toolbar-actions button:first-child,
   .toolbar-actions button:last-child {
-    width: 2rem;
+    width: 2.75rem;
   }
 
   .toolbar-actions button {
-    min-height: 1.85rem;
+    flex: 0 0 auto;
+    min-height: 2.75rem;
     padding-inline: 0.22rem;
   }
 
   #revealCard {
     flex: 0 0 auto;
-    min-width: 3.8rem;
+    min-width: 4.4rem;
   }
 
   .flashcard {
