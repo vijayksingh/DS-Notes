@@ -50,7 +50,9 @@ The sidebar is an index tray, not a second notebook page.
 - On narrow tablets, switch the index to a two-column strip before controls get squeezed. Never keep a search input so narrow that the placeholder becomes clipped.
 - On mobile, the tray becomes an unframed quick-index disclosure. The collapsed state shows the current problem and a browse affordance; search and filters live inside the expanded utility strip.
 - Mobile search is a notebook field, not a card: transparent background, no rounded box, and only a quiet baseline for orientation.
+- Mobile search focus strengthens the baseline instead of drawing a rectangle around the field.
 - Search results must never collapse into blank space. Show a short empty state when nothing matches.
+- Empty index states explain the miss and offer a quiet reset action; never imply the archive itself is empty.
 - The active problem is marked with a title highlighter only. Do not use a left rail or card-like selected row inside the index.
 
 ### Pattern Filters

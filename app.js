@@ -126,9 +126,24 @@ function renderProblemList() {
   els.list.innerHTML = "";
 
   if (problems.length === 0) {
-    const empty = document.createElement("p");
+    const term = els.search.value.trim();
+    const empty = document.createElement("div");
+    const message = document.createElement("p");
+    const reset = document.createElement("button");
     empty.className = "problem-list-empty";
-    empty.textContent = "No matching problems yet.";
+    message.textContent = term
+      ? `No index match for "${term}".`
+      : "No index match for this filter.";
+    reset.type = "button";
+    reset.className = "empty-reset";
+    reset.textContent = "Clear search";
+    reset.addEventListener("click", () => {
+      els.search.value = "";
+      state.activePattern = "All";
+      render();
+      els.search.focus();
+    });
+    empty.append(message, reset);
     els.list.append(empty);
     return;
   }

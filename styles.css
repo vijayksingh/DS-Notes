@@ -355,12 +355,61 @@ a:hover {
 }
 
 .problem-list-empty {
+  display: grid;
+  gap: 0.28rem;
+  justify-items: start;
   margin: 0;
-  padding: 0.65rem 0.75rem;
+  padding: 0.52rem 0.05rem;
   color: var(--muted);
   font-family: var(--hand);
   font-size: var(--text-sm);
   line-height: 1.4;
+}
+
+.problem-list-empty p {
+  margin: 0;
+}
+
+.empty-reset {
+  position: relative;
+  min-height: 1.8rem;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: var(--accent);
+  font-size: var(--text-sm);
+  transform: none;
+}
+
+.empty-reset::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0.2rem;
+  left: 0;
+  height: 1px;
+  background: rgb(31 94 159 / 42%);
+  transform: rotate(-0.7deg);
+}
+
+.empty-reset:hover,
+.empty-reset:focus-visible {
+  background: transparent;
+  box-shadow: none;
+  color: var(--accent);
+  transform: none;
+}
+
+.empty-reset:focus-visible {
+  outline: none;
+}
+
+.empty-reset:hover::after,
+.empty-reset:focus-visible::after {
+  height: 2px;
+  background: rgb(31 94 159 / 76%);
 }
 
 .workspace {
@@ -1178,6 +1227,12 @@ a:hover {
     background: transparent;
     font-size: var(--text-body);
     padding: 0.35rem 0 0.42rem;
+  }
+
+  .search input:focus-visible {
+    outline: none;
+    border-bottom-color: rgb(31 94 159 / 68%);
+    box-shadow: 0 2px 0 rgb(31 94 159 / 16%);
   }
 
   .problem-list {
