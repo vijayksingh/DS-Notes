@@ -75,7 +75,7 @@
                 </div>
                 <div class="toolbar-actions">
                   <button id="prevCard" type="button" aria-label="Previous card">‹</button>
-                  <button id="revealCard" type="button">Reveal</button>
+                  <button id="revealCard" type="button" aria-controls="cardAnswer" aria-expanded="false">Reveal</button>
                   <button id="nextCard" type="button" aria-label="Next card">›</button>
                 </div>
               </div>
@@ -85,7 +85,7 @@
                 <div class="deck-layer deck-layer-two" aria-hidden="true"></div>
                 <article class="flashcard">
                   <p class="card-question" id="cardQuestion"></p>
-                  <div class="card-answer" id="cardAnswer" hidden></div>
+                  <div class="card-answer" id="cardAnswer" role="region" aria-labelledby="cardQuestion" hidden></div>
                 </article>
               </div>
             </section>

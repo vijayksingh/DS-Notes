@@ -80,6 +80,7 @@ The question bank is a table of contents for the memory card stack.
 Flashcards are the main study object.
 
 - Controls stay visually secondary. Reveal/Hide is plain ink text with a subtle underline, never a filled button or loud highlighter.
+- Reveal controls expose their expanded state and answer relationship semantically, not only through changing text.
 - Toolbar focus should strengthen the ink mark on the focused control instead of adding button chrome.
 - On mobile, flashcard controls stay in one compact row so the card itself remains near the top of the revision flow.
 - On narrow mobile, abbreviate toolbar labels before allowing counters to wrap.

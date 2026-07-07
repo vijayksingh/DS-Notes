@@ -217,6 +217,7 @@ function renderCard(problem) {
   els.answer.textContent = card?.answer ?? "";
   els.answer.hidden = !state.revealed;
   els.reveal.textContent = state.revealed ? "Hide" : "Reveal";
+  els.reveal.setAttribute("aria-expanded", String(state.revealed));
   els.previous.disabled = !hasCards;
   els.next.disabled = !hasCards;
   els.reveal.disabled = !hasCards;
