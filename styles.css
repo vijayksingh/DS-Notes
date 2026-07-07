@@ -446,8 +446,18 @@ a:hover {
 
 .toolbar-actions button {
   padding: 0 var(--space-sm);
+  border-color: transparent;
   border-radius: 0.55rem 0.42rem 0.62rem 0.46rem;
-  box-shadow: 1px 1.5px 0 rgb(31 41 51 / 8%);
+  background: transparent;
+  color: var(--muted);
+  box-shadow: none;
+}
+
+.toolbar-actions button:hover {
+  border-color: rgb(83 103 126 / 26%);
+  background: rgb(255 253 246 / 42%);
+  box-shadow: none;
+  transform: none;
 }
 
 .toolbar-actions button:first-child,
@@ -459,23 +469,37 @@ a:hover {
 }
 
 #revealCard {
-  border-color: var(--accent);
-  background: linear-gradient(180deg, #2569aa, #1f5e9f);
-  color: white;
+  border-color: transparent;
+  background:
+    linear-gradient(
+      180deg,
+      transparent 0 46%,
+      rgb(63 145 216 / 14%) 46% 78%,
+      transparent 78% 100%
+    ),
+    rgb(255 253 246 / 52%);
+  color: var(--accent);
   font-weight: 400;
-  box-shadow:
-    1.5px 2px 0 #153e6a,
-    0 5px 10px rgb(34 92 156 / 12%);
+  box-shadow: none;
   transform: none;
 }
 
 #revealCard:hover {
-  transform: translateY(-1px);
+  border-color: rgb(31 94 159 / 28%);
+  background:
+    linear-gradient(
+      180deg,
+      transparent 0 42%,
+      rgb(63 145 216 / 19%) 42% 80%,
+      transparent 80% 100%
+    ),
+    rgb(255 253 246 / 62%);
+  transform: none;
 }
 
 .flashcard-stack {
   position: relative;
-  max-width: 42rem;
+  max-width: 38rem;
 }
 
 .deck-layer {
@@ -509,8 +533,8 @@ a:hover {
 
 .flashcard {
   position: relative;
-  min-height: 10.5rem;
-  padding: 2rem var(--space-xl) var(--space-lg) 3rem;
+  min-height: 12rem;
+  padding: 2.1rem var(--space-xl) 1.65rem 3rem;
   border: 0;
   border-radius: 0.2rem 0.16rem 0.24rem 0.18rem;
   background:
@@ -549,27 +573,40 @@ a:hover {
 .card-question {
   position: relative;
   z-index: 2;
-  max-width: 30ch;
+  max-width: 28ch;
   margin: 0;
   color: var(--ink);
   font-family: var(--display);
-  font-size: 1.36rem;
+  font-size: 1.44rem;
   font-weight: 400;
   line-height: 1.32;
 }
 
 .card-answer {
   position: relative;
-  z-index: 1;
-  max-width: 68ch;
-  margin-top: var(--space-lg);
-  padding: var(--space-md);
-  border-left: 4px solid var(--green);
-  border-radius: 0 var(--radius) var(--radius) 0;
-  background: var(--green-soft);
+  z-index: 2;
+  max-width: 35rem;
+  margin-top: var(--space-md);
+  padding: 0.85rem 0.35rem 0 0;
+  border-top: 1.5px dashed rgb(83 103 126 / 28%);
+  border-left: 0;
+  border-radius: 0;
+  background: transparent;
   color: var(--text);
-  font-size: var(--text-body);
-  line-height: 1.7;
+  font-size: 0.96rem;
+  line-height: 1.62;
+}
+
+.card-answer::before {
+  content: "answer";
+  display: block;
+  margin-bottom: 0.18rem;
+  color: var(--accent);
+  font-family: var(--hand);
+  font-size: var(--text-xs);
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .question-bank {
@@ -844,10 +881,11 @@ a:hover {
 
   .toolbar-actions {
     width: 100%;
+    justify-content: center;
   }
 
   #revealCard {
-    flex: 1;
+    flex: 0 0 auto;
   }
 
   .flashcard {

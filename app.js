@@ -368,7 +368,15 @@ els.next.addEventListener("click", () => {
 
 els.reveal.addEventListener("click", () => {
   state.revealed = !state.revealed;
-  renderProblem();
+  renderCard(activeProblem());
+
+  if (state.revealed && motionAnimate && !prefersReducedMotion.matches) {
+    motionAnimate(
+      els.answer,
+      { opacity: [0, 1], y: [-4, 0] },
+      { duration: 0.18, ease: "easeOut" }
+    );
+  }
 });
 
 document.addEventListener("keydown", (event) => {
