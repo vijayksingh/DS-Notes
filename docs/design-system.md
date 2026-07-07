@@ -39,6 +39,7 @@ The full interface sits on a centered desk, not against the browser edge.
 - Keep the sidebar and notebook page together as one centered workbench on wide desktop screens.
 - Do not let the notebook remain pinned left with a large empty right side.
 - The notebook page can keep a readable max width; center the larger composition instead of stretching the page.
+- Preserve sticky navigation while reading. Use horizontal clipping that does not create a sticky-breaking scroll container.
 
 ### Index Tray
 
@@ -52,6 +53,7 @@ The sidebar is an index tray, not a second notebook page.
 - On tablet, the tray becomes a shallow horizontal index before the notebook: brand, search/filter controls, and current problem should sit in one compact strip rather than a tall stacked panel.
 - On narrow tablets, switch the index to a two-column strip before controls get squeezed. Never keep a search input so narrow that the placeholder becomes clipped.
 - On mobile, the tray becomes an unframed quick-index disclosure. The collapsed state shows the current problem and a browse affordance; search and filters live inside the expanded utility strip.
+- The mobile quick-index remains available while scrolling so revision controls are never stranded off-screen; its backing should be the desk surface, not a card and not transparent over notebook content.
 - Mobile search is a notebook field, not a card: transparent background, no rounded box, and only a quiet baseline for orientation.
 - Search fields use a baseline treatment across breakpoints. Do not reintroduce rounded search boxes inside the index.
 - Mobile search focus strengthens the baseline instead of drawing a rectangle around the field.
