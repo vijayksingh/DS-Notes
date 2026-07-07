@@ -5,11 +5,17 @@
   --desk: #e8eee9;
   --paper: #fffdf4;
   --paper-soft: #fff8dc;
+  --surface-panel: rgb(255 253 246 / 94%);
+  --surface-control: rgb(255 253 246 / 62%);
+  --surface-control-hover: rgb(255 253 246 / 82%);
+  --surface-selected: rgb(228 239 253 / 44%);
   --ink: #182334;
   --text: #344354;
   --muted: #687789;
   --faint: #9aa5b1;
   --line: #d6dde4;
+  --border-soft: rgb(83 103 126 / 26%);
+  --border-strong: rgb(31 94 159 / 54%);
   --sketch-line: rgb(83 103 126 / 46%);
   --sketch-line-strong: rgb(31 94 159 / 60%);
   --dot: rgb(72 121 163 / 16%);
@@ -34,8 +40,13 @@
   --text-xl: 1.5rem;
   --text-2xl: 1.875rem;
   --radius: 0.5rem;
+  --radius-panel: 0.72rem 0.62rem 0.78rem 0.58rem;
+  --radius-control: 0.58rem 0.46rem 0.62rem 0.42rem;
+  --radius-pill: 0.95rem 0.8rem 1rem 0.76rem;
   --shadow-paper: 0 20px 46px rgb(31 41 51 / 11%);
+  --shadow-panel: 0 10px 24px rgb(31 41 51 / 8%);
   --shadow-page: 0 14px 32px rgb(31 41 51 / 10%);
+  --shadow-touch: 1px 1.5px 0 rgb(31 41 51 / 6%);
   --display: "Short Stack", "Comic Sans MS", cursive;
   --hand: "Short Stack", "Comic Sans MS", cursive;
   --round: "Atkinson Hyperlegible", "Avenir Next", Avenir, -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
@@ -71,14 +82,14 @@ input {
 button {
   min-height: 2.5rem;
   border: 1.6px solid var(--sketch-line);
-  border-radius: 0.58rem 0.46rem 0.62rem 0.42rem;
-  background: rgb(255 253 246 / 86%);
+  border-radius: var(--radius-control);
+  background: var(--surface-control);
   color: var(--text);
   cursor: pointer;
   font-family: var(--hand);
   font-size: 0.91rem;
   font-weight: 400;
-  box-shadow: 1.5px 2px 0 rgb(31 41 51 / 8%);
+  box-shadow: var(--shadow-touch);
   transition:
     transform 140ms ease,
     box-shadow 140ms ease,
@@ -88,7 +99,7 @@ button {
 
 button:hover {
   border-color: rgb(31 94 159 / 48%);
-  background: rgb(255 255 255 / 92%);
+  background: var(--surface-control-hover);
   box-shadow: 1px 1px 0 rgb(31 41 51 / 10%);
   transform: translateY(1px);
 }
@@ -132,13 +143,14 @@ a:hover {
 .sidebar {
   position: sticky;
   top: var(--space-xl);
-  height: calc(100vh - var(--space-xl) * 2);
-  overflow: auto;
-  border: 1px solid rgb(31 41 51 / 12%);
-  border-radius: 0.7rem;
-  background: rgb(255 253 246 / 97%);
-  padding: var(--space-lg);
-  box-shadow: var(--shadow-page);
+  height: auto;
+  max-height: calc(100vh - var(--space-xl) * 2);
+  overflow: visible;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-panel);
+  background: var(--surface-panel);
+  padding: 1.25rem;
+  box-shadow: var(--shadow-panel);
 }
 
 .brand {
@@ -194,14 +206,14 @@ a:hover {
 .search input {
   min-width: 0;
   width: 100%;
-  border: 1.6px solid var(--sketch-line);
-  border-radius: 0.58rem 0.44rem 0.62rem 0.48rem;
-  background: rgb(255 253 246 / 86%);
+  border: 1.4px solid var(--border-soft);
+  border-radius: var(--radius-control);
+  background: rgb(255 253 246 / 54%);
   color: var(--text);
   font-family: var(--hand);
   font-size: 0.94rem;
   padding: 0.625rem 0.75rem;
-  box-shadow: inset 0 1px 0 rgb(255 255 255 / 78%);
+  box-shadow: none;
 }
 
 .filters {
@@ -216,14 +228,35 @@ a:hover {
   padding: 0 var(--space-sm);
   color: var(--muted);
   font-size: var(--text-sm);
-  border-radius: 0.95rem 0.8rem 1rem 0.76rem;
-  box-shadow: 1px 1.5px 0 rgb(31 41 51 / 6%);
+  border-color: transparent;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  box-shadow: none;
 }
 
 .chip[aria-pressed="true"] {
-  border-color: var(--sketch-line-strong);
-  background: rgb(228 239 253 / 62%);
+  border-color: transparent;
+  background:
+    linear-gradient(
+      180deg,
+      transparent 0 44%,
+      var(--surface-selected) 44% 80%,
+      transparent 80% 100%
+    );
   color: var(--accent);
+}
+
+.chip:hover {
+  border-color: transparent;
+  background:
+    linear-gradient(
+      180deg,
+      transparent 0 48%,
+      rgb(83 103 126 / 10%) 48% 80%,
+      transparent 80% 100%
+    );
+  box-shadow: none;
+  transform: none;
 }
 
 .problem-list {
@@ -237,18 +270,44 @@ a:hover {
   gap: var(--space-2xs);
   width: 100%;
   min-height: 0;
-  padding: var(--space-sm);
+  padding: 0.62rem 0.65rem 0.62rem 0.85rem;
+  border-color: transparent;
   text-align: left;
-  border-radius: 0.65rem 0.48rem 0.72rem 0.52rem;
+  border-radius: var(--radius-control);
+  background: transparent;
+  box-shadow: none;
 }
 
 .problem-link[aria-current="true"] {
-  border-color: var(--sketch-line-strong);
-  background: linear-gradient(90deg, rgb(228 239 253 / 62%), rgb(255 253 246 / 88%));
+  border-color: transparent;
+  background:
+    linear-gradient(90deg, rgb(228 239 253 / 24%), transparent 64%);
   box-shadow:
-    inset 2px 0 0 var(--accent),
-    1.5px 2px 0 rgb(31 94 159 / 8%);
+    inset 2px 0 0 var(--accent);
   transform: none;
+}
+
+.problem-link:hover {
+  border-color: var(--border-soft);
+  background: var(--surface-control);
+  box-shadow: none;
+  transform: none;
+}
+
+.problem-link[aria-current="true"]:hover {
+  border-color: transparent;
+  box-shadow: inset 2px 0 0 var(--accent);
+}
+
+.problem-link[aria-current="true"] strong {
+  width: fit-content;
+  background:
+    linear-gradient(
+      180deg,
+      transparent 0 48%,
+      var(--surface-selected) 48% 82%,
+      transparent 82% 100%
+    );
 }
 
 .problem-link strong {
