@@ -13,19 +13,31 @@
   <body>
     <main class="shell">
       <aside class="sidebar" aria-label="Problem index">
-        <div class="brand">
-          <h1>DS Notes</h1>
-          <p>Problem cards for revision, intuition, and interview recall.</p>
-        </div>
+        <details class="index-panel" id="indexPanel" open>
+          <summary class="index-summary">
+            <span>
+              <span class="label">Index</span>
+              <strong id="indexCurrentProblem">Current problem</strong>
+            </span>
+            <span class="index-summary-action">Browse</span>
+          </summary>
 
-        <label class="search">
-          <span class="label">Search</span>
-          <input id="searchInput" type="search" placeholder="problem, pattern, gotcha..." />
-        </label>
+          <div class="index-content">
+            <div class="brand">
+              <h1>DS Notes</h1>
+              <p>Problem cards for revision, intuition, and interview recall.</p>
+            </div>
 
-        <div class="filters" id="patternFilters" aria-label="Pattern filters"></div>
+            <label class="search">
+              <span class="label">Search</span>
+              <input id="searchInput" type="search" placeholder="problem, pattern, gotcha..." />
+            </label>
 
-        <nav class="problem-list" id="problemList" aria-label="Problems"></nav>
+            <div class="filters" id="patternFilters" aria-label="Pattern filters"></div>
+
+            <nav class="problem-list" id="problemList" aria-label="Problems"></nav>
+          </div>
+        </details>
       </aside>
 
       <section class="workspace" aria-live="polite">

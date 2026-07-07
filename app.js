@@ -8,6 +8,7 @@ window.__dsNotesEnhancement = {
 };
 
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+const compactIndex = window.matchMedia("(max-width: 36rem)");
 
 const enhancementReady = Promise.allSettled([
   import("https://esm.sh/rough-notation@0.5.1?bundle"),
@@ -49,6 +50,8 @@ let activeAnnotations = [];
 let isAnimatingCard = false;
 
 const els = {
+  indexPanel: document.querySelector("#indexPanel"),
+  indexCurrentProblem: document.querySelector("#indexCurrentProblem"),
   search: document.querySelector("#searchInput"),
   filters: document.querySelector("#patternFilters"),
   list: document.querySelector("#problemList"),
@@ -122,6 +125,14 @@ function renderProblemList() {
   const problems = filteredProblems();
   els.list.innerHTML = "";
 
+  if (problems.length === 0) {
+    const empty = document.createElement("p");
+    empty.className = "problem-list-empty";
+    empty.textContent = "No matching problems yet.";
+    els.list.append(empty);
+    return;
+  }
+
   for (const problem of problems) {
     const button = document.createElement("button");
     button.type = "button";
@@ -136,6 +147,9 @@ function renderProblemList() {
       state.cardIndex = 0;
       state.revealed = false;
       render();
+      if (compactIndex.matches) {
+        els.indexPanel.open = false;
+      }
     });
     els.list.append(button);
   }
@@ -335,6 +349,7 @@ function renderProblem() {
   const problem = activeProblem();
   if (!problem) return;
 
+  els.indexCurrentProblem.textContent = problem.title;
   els.source.textContent = problem.source.name;
   els.title.textContent = problem.title;
   els.summary.textContent = problem.summary;
@@ -396,6 +411,12 @@ document.addEventListener("keydown", (event) => {
   if (event.key === "ArrowLeft") els.previous.click();
 });
 
+function syncIndexMode() {
+  els.indexPanel.open = !compactIndex.matches;
+}
+
+compactIndex.addEventListener("change", syncIndexMode);
+syncIndexMode();
 render();
 
 function clearAnnotations() {
