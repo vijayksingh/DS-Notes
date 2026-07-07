@@ -591,6 +591,16 @@ a:hover {
   transform: none;
 }
 
+.toolbar-actions button:focus-visible {
+  outline: none;
+  color: var(--accent);
+}
+
+.toolbar-actions button:focus-visible:not(#revealCard) {
+  background:
+    radial-gradient(circle at 50% 55%, rgb(63 145 216 / 14%) 0 48%, transparent 50%);
+}
+
 .toolbar-actions button:first-child,
 .toolbar-actions button:last-child {
   width: 2.5rem;
@@ -628,8 +638,17 @@ a:hover {
   transform: none;
 }
 
+#revealCard:focus-visible {
+  color: var(--accent);
+}
+
 #revealCard:hover::after {
   background: rgb(31 94 159 / 72%);
+}
+
+#revealCard:focus-visible::after {
+  height: 2px;
+  background: rgb(31 94 159 / 76%);
 }
 
 .flashcard-stack {
@@ -783,6 +802,10 @@ a:hover {
   color: var(--accent);
 }
 
+.question-bank li:has(.question-jump:focus-visible)::before {
+  color: var(--accent);
+}
+
 .question-jump {
   position: relative;
   display: block;
@@ -807,6 +830,10 @@ a:hover {
   background: transparent;
   box-shadow: none;
   transform: none;
+}
+
+.question-jump:focus-visible {
+  outline: none;
 }
 
 .question-jump:hover .question-text {
@@ -838,6 +865,17 @@ a:hover {
       transparent 0 58%,
       var(--surface-highlight) 58% 84%,
       transparent 84% 100%
+    );
+}
+
+.question-jump:focus-visible .question-text {
+  color: var(--ink);
+  background:
+    linear-gradient(
+      180deg,
+      transparent 0 50%,
+      rgb(63 145 216 / 23%) 50% 88%,
+      transparent 88% 100%
     );
 }
 

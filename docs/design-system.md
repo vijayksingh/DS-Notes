@@ -11,6 +11,7 @@ Decoration is allowed only when it supports recall or orientation.
 - **Handwritten type** is for headings, labels, controls, and flashcard prompts.
 - **Body type** is for longer explanatory text.
 - **Focus states** must be visible and intentional. Native controls such as mobile disclosures use blue-ink focus treatment, not browser-default rings.
+- **Borderless controls** use inline focus marks. Question rows and flashcard toolbar controls should emphasize their text/number, not draw full rectangular boxes.
 
 ## Tokens
 
@@ -68,12 +69,14 @@ The question bank is a table of contents for the memory card stack.
 - It should orient the current card without becoming the main visual target.
 - Active state uses the prompt number and a low inline highlighter. Avoid full blue link styling.
 - Prompt rows stay unboxed; hover can add a faint inline mark but not a filled row.
+- Keyboard focus follows the same inline system: strengthen the prompt text highlighter and number, never outline the full row.
 
 ### Memory Card
 
 Flashcards are the main study object.
 
 - Controls stay visually secondary. Reveal/Hide is plain ink text with a subtle underline, never a filled button or loud highlighter.
+- Toolbar focus should strengthen the ink mark on the focused control instead of adding button chrome.
 - On mobile, flashcard controls stay in one compact row so the card itself remains near the top of the revision flow.
 - Mobile flashcard controls use transparent 44px hit areas. Quiet controls should not become tiny controls.
 - Answers reveal inside the card language, not as alert panels.
