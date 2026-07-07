@@ -47,6 +47,7 @@ The sidebar is an index tray, not a second notebook page.
 - On tablet, the tray becomes a shallow horizontal index before the notebook: brand, search/filter controls, and current problem should sit in one compact strip rather than a tall stacked panel.
 - On narrow tablets, switch the index to a two-column strip before controls get squeezed. Never keep a search input so narrow that the placeholder becomes clipped.
 - On mobile, the tray becomes an unframed quick-index disclosure. The collapsed state shows the current problem and a browse affordance; search and filters live inside the expanded utility strip.
+- Mobile search is a notebook field, not a card: transparent background, no rounded box, and only a quiet baseline for orientation.
 - Search results must never collapse into blank space. Show a short empty state when nothing matches.
 - The active problem is marked with a title highlighter only. Do not use a left rail or card-like selected row inside the index.
 
