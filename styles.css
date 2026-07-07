@@ -762,6 +762,10 @@ a:hover {
   font-variant-numeric: tabular-nums;
 }
 
+.question-bank li:has(.question-jump[aria-current="true"])::before {
+  color: var(--accent);
+}
+
 .question-jump {
   position: relative;
   display: block;
@@ -788,6 +792,16 @@ a:hover {
   transform: none;
 }
 
+.question-jump:hover .question-text {
+  background:
+    linear-gradient(
+      180deg,
+      transparent 0 58%,
+      rgb(83 103 126 / 10%) 58% 84%,
+      transparent 84% 100%
+    );
+}
+
 .question-text {
   display: inline;
   padding: 0 0.12em;
@@ -796,7 +810,7 @@ a:hover {
 }
 
 .question-jump[aria-current="true"] {
-  color: var(--accent);
+  color: var(--ink);
   font-weight: 400;
 }
 
@@ -804,9 +818,9 @@ a:hover {
   background:
     linear-gradient(
       180deg,
-      transparent 0 30%,
-      rgb(63 145 216 / 26%) 30% 92%,
-      transparent 92% 100%
+      transparent 0 58%,
+      var(--surface-highlight) 58% 84%,
+      transparent 84% 100%
     );
 }
 

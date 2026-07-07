@@ -49,6 +49,14 @@ Filters are navigation aids, not primary actions.
 - The active filter uses a content-width highlighter mark.
 - On mobile, filters stay in one short row so opening the index does not become a full-screen form.
 
+### Question Bank
+
+The question bank is a table of contents for the memory card stack.
+
+- It should orient the current card without becoming the main visual target.
+- Active state uses the prompt number and a low inline highlighter. Avoid full blue link styling.
+- Prompt rows stay unboxed; hover can add a faint inline mark but not a filled row.
+
 ### Memory Card
 
 Flashcards are the main study object.
