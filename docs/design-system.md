@@ -86,6 +86,7 @@ The core model is the fastest path to the problem intuition.
 - Keep it compact and close to the problem header.
 - Use a stable ink rail instead of animated or generated brackets.
 - Labels should help scanning; the invariant and avoid text are the actual content.
+- Treat the pattern as the recognition hook. Invariant and avoid text should read like body notes, not three equally bold headings.
 - Do not frame it as a card. It belongs on the notebook page itself.
 - On mobile, keep label/value rows compact. Do not stack every label above its value unless the content would otherwise overflow.
 
