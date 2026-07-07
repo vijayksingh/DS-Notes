@@ -388,6 +388,13 @@ function render() {
 
 els.search.addEventListener("input", render);
 
+function isEditableTarget(target) {
+  return (
+    target instanceof Element &&
+    (target.isContentEditable || target.matches("input, textarea, select"))
+  );
+}
+
 els.previous.addEventListener("click", () => {
   const problem = activeProblem();
   animateCardChange(() => {
@@ -418,12 +425,20 @@ els.reveal.addEventListener("click", () => {
 });
 
 document.addEventListener("keydown", (event) => {
+  if (isEditableTarget(event.target)) return;
+
   if (event.key === " " && event.target === document.body) {
     event.preventDefault();
     els.reveal.click();
   }
-  if (event.key === "ArrowRight") els.next.click();
-  if (event.key === "ArrowLeft") els.previous.click();
+  if (event.key === "ArrowRight") {
+    event.preventDefault();
+    els.next.click();
+  }
+  if (event.key === "ArrowLeft") {
+    event.preventDefault();
+    els.previous.click();
+  }
 });
 
 function syncIndexMode() {

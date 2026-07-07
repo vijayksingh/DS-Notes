@@ -13,6 +13,7 @@ Decoration is allowed only when it supports recall or orientation.
 - **Focus states** must be visible and intentional. Native controls such as mobile disclosures use blue-ink focus treatment, not browser-default rings.
 - **Borderless controls** use inline focus marks. Question rows and flashcard toolbar controls should emphasize their text/number, not draw full rectangular boxes.
 - **Reduced motion** removes decorative movement across JS animations and CSS transitions while preserving the same readable layout.
+- **Keyboard shortcuts** never override text-field editing behavior. Arrow shortcuts belong to the study surface, not focused inputs.
 
 ## Tokens
 
