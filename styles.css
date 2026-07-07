@@ -17,8 +17,8 @@
   --rule-soft: rgb(83 103 126 / 18%);
   --ink: #182334;
   --text: #344354;
-  --muted: #687789;
-  --faint: #9aa5b1;
+  --muted: #5c6d82;
+  --faint: #8794a1;
   --line: #d6dde4;
   --border-soft: rgb(83 103 126 / 26%);
   --border-strong: rgb(31 94 159 / 54%);
@@ -211,7 +211,7 @@ a:hover {
 
 .label,
 .kicker {
-  color: #728195;
+  color: var(--muted);
   font-size: var(--text-xs);
   font-family: var(--hand);
   font-weight: 400;
@@ -358,7 +358,7 @@ a:hover {
 }
 
 .problem-link small {
-  color: rgb(104 116 130 / 86%);
+  color: var(--muted);
   font-size: 0.71rem;
   line-height: 1.4;
 }
@@ -512,7 +512,7 @@ a:hover {
 }
 
 .meta-item .label {
-  color: rgb(114 129 149 / 82%);
+  color: var(--muted);
   font-size: 0.68rem;
 }
 
