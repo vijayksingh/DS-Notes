@@ -853,6 +853,17 @@ a:hover {
   color: var(--accent);
 }
 
+.question-bank li:has(.question-jump:focus-visible)::after {
+  content: "";
+  position: absolute;
+  top: 0.92rem;
+  left: -0.42rem;
+  width: 0.24rem;
+  height: 0.24rem;
+  border-radius: 999px;
+  background: rgb(31 94 159 / 72%);
+}
+
 .question-jump {
   position: relative;
   display: block;
@@ -917,12 +928,12 @@ a:hover {
 }
 
 .question-jump:focus-visible .question-text {
-  color: var(--ink);
+  color: var(--accent);
   background:
     linear-gradient(
       180deg,
-      transparent 0 60%,
-      rgb(63 145 216 / 20%) 60% 90%,
+      transparent 0 58%,
+      rgb(63 145 216 / 22%) 58% 91%,
       transparent 90% 100%
     );
 }
