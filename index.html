@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>DS Notes</title>
+    <meta
+      name="description"
+      content="Problem-by-problem data-structure flashcards for intuition, gotchas, and review."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <aside class="sidebar" aria-label="Problem index">
+        <div class="brand">
+          <h1>DS Notes</h1>
+          <p>Problem cards for revision, intuition, and interview recall.</p>
+        </div>
+
+        <label class="search">
+          <span class="label">Search</span>
+          <input id="searchInput" type="search" placeholder="problem, pattern, gotcha..." />
+        </label>
+
+        <div class="filters" id="patternFilters" aria-label="Pattern filters"></div>
+
+        <nav class="problem-list" id="problemList" aria-label="Problems"></nav>
+      </aside>
+
+      <section class="workspace" aria-live="polite">
+        <article class="notebook-page">
+          <header class="problem-header">
+            <div>
+              <p class="kicker" id="problemSource">Source</p>
+              <h2 id="problemTitle">Select a problem</h2>
+              <p class="summary" id="problemSummary"></p>
+            </div>
+            <div class="meta-panel" id="metaPanel"></div>
+          </header>
+
+          <section class="study-strip" aria-label="Study snapshot">
+            <div>
+              <span class="label">Pattern</span>
+              <strong id="patternText">-</strong>
+            </div>
+            <div>
+              <span class="label">Invariant</span>
+              <strong id="invariantText">-</strong>
+            </div>
+            <div>
+              <span class="label">Avoid</span>
+              <strong id="gotchaText">-</strong>
+            </div>
+          </section>
+
+          <div class="revision-layout">
+            <section class="card-stage" aria-label="Flashcards">
+              <div class="card-toolbar">
+                <div>
+                  <span class="label">Flashcard</span>
+                  <strong id="cardCounter">0 / 0</strong>
+                </div>
+                <div class="toolbar-actions">
+                  <button id="prevCard" type="button" aria-label="Previous card">‹</button>
+                  <button id="revealCard" type="button">Reveal</button>
+                  <button id="nextCard" type="button" aria-label="Next card">›</button>
+                </div>
+              </div>
+
+              <div class="flashcard-stack">
+                <div class="deck-layer deck-layer-one" aria-hidden="true"></div>
+                <div class="deck-layer deck-layer-two" aria-hidden="true"></div>
+                <article class="flashcard">
+                  <p class="card-question" id="cardQuestion"></p>
+                  <div class="card-answer" id="cardAnswer" hidden></div>
+                </article>
+              </div>
+            </section>
+
+            <aside class="question-bank" aria-label="Question bank">
+              <div class="section-heading">
+                <span class="label">Question Bank</span>
+                <strong id="questionCount">0 prompts</strong>
+              </div>
+              <ol id="questionList"></ol>
+            </aside>
+          </div>
+
+          <section class="notes-grid" aria-label="Problem notes">
+            <article>
+              <h3>Aha Clicks</h3>
+              <ul id="ahaList"></ul>
+            </article>
+            <article>
+              <h3>Review Prompts</h3>
+              <ul id="reviewList"></ul>
+            </article>
+          </section>
+        </article>
+      </section>
+    </main>
+
+    <script src="data/problems.js?v=rough1"></script>
+    <script type="module" src="app.js?v=rough1"></script>
+  </body>
+</html>
