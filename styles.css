@@ -14,6 +14,8 @@
   --surface-control-hover: rgb(255 253 246 / 82%);
   --surface-selected: rgb(63 145 216 / 14%);
   --surface-highlight: rgb(63 145 216 / 18%);
+  --index-mark: rgb(83 103 126 / 16%);
+  --index-mark-strong: rgb(83 103 126 / 24%);
   --rule-soft: rgb(83 103 126 / 18%);
   --ink: #182334;
   --text: #344354;
@@ -340,13 +342,18 @@ a:hover {
   content: "";
   position: absolute;
   z-index: -1;
-  inset: 58% -0.16rem 8% -0.12rem;
-  background: var(--surface-selected);
-  transform: rotate(-0.35deg);
+  inset: 62% -0.12rem 7% -0.08rem;
+  background: var(--index-mark);
+  transform: rotate(-0.24deg);
 }
 
 .problem-link:hover strong {
-  color: var(--accent);
+  color: var(--ink);
+}
+
+.problem-link:hover strong::before,
+.problem-link[aria-current="true"]:focus-visible strong::before {
+  background: var(--index-mark-strong);
 }
 
 .problem-link strong {
@@ -1123,17 +1130,16 @@ a:hover {
   }
 
   .sidebar {
-    position: sticky;
-    top: 0;
-    z-index: 20;
+    position: static;
+    z-index: auto;
     width: 100%;
     max-width: 100%;
     max-height: none;
-    padding: var(--space-sm) 0 0.42rem;
+    padding: 0;
     border: 0;
     border-radius: 0;
-    background: var(--desk);
-    box-shadow: 0 0.45rem 0 var(--desk);
+    background: transparent;
+    box-shadow: none;
   }
 
   .index-panel {
@@ -1147,11 +1153,11 @@ a:hover {
   .index-summary {
     position: relative;
     display: flex;
-    min-height: 2.8rem;
+    min-height: 2.45rem;
     align-items: center;
     justify-content: space-between;
     gap: var(--space-md);
-    padding: 0.16rem 0.1rem 0.48rem;
+    padding: 0.12rem 0 0.42rem;
     border-bottom: 1px dashed rgb(83 103 126 / 20%);
     cursor: pointer;
     list-style: none;
@@ -1216,9 +1222,9 @@ a:hover {
     display: grid;
     grid-template-columns: 1fr;
     grid-template-areas: none;
-    gap: var(--space-sm);
-    padding: var(--space-sm) 0 0.15rem;
-    border-bottom: 1px dashed rgb(83 103 126 / 20%);
+    gap: 0.62rem;
+    padding: 0.58rem 0 0.08rem;
+    border-bottom: 0;
   }
 
   .brand {
@@ -1231,7 +1237,7 @@ a:hover {
   }
 
   .search input {
-    min-height: 2.75rem;
+    min-height: 2.35rem;
     border: 0;
     border-bottom: 1.5px dashed rgb(83 103 126 / 32%);
     border-radius: 0;

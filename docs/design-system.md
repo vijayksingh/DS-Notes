@@ -7,7 +7,7 @@ Decoration is allowed only when it supports recall or orientation.
 
 - **Paper surfaces** use warm off-white tokens and subtle borders. Avoid pure white panels.
 - **Notebook texture** belongs to study content. Navigation should be quieter than the page.
-- **Blue ink** marks selection, source links, and active study affordances.
+- **Blue ink** marks source links and active study affordances. Index selection uses graphite notebook marks instead of app-selection blue.
 - **Handwritten type** is for headings, labels, controls, and flashcard prompts.
 - **Body type** is for longer explanatory text.
 - **Muted ink** must stay readable on both desk and paper. Quiet labels should feel secondary through size and placement, not through weak contrast.
@@ -54,13 +54,13 @@ The sidebar is an index tray, not a second notebook page.
 - On tablet, the tray becomes a shallow horizontal index before the notebook: brand, search/filter controls, and current problem should sit in one compact strip rather than a tall stacked panel.
 - On narrow tablets, switch the index to a two-column strip before controls get squeezed. Never keep a search input so narrow that the placeholder becomes clipped.
 - On mobile, the tray becomes an unframed quick-index disclosure. The collapsed state shows the current problem and a browse affordance; search and filters live inside the expanded utility strip.
-- The mobile quick-index remains available while scrolling so revision controls are never stranded off-screen; its backing should be the desk surface, not a card and not transparent over notebook content.
+- The mobile quick-index stays in the page flow. Do not turn search into a sticky top card or detached utility slab.
 - Mobile search is a notebook field, not a card: transparent background, no rounded box, and only a quiet baseline for orientation.
 - Search fields use a baseline treatment across breakpoints. Do not reintroduce rounded search boxes inside the index.
 - Mobile search focus strengthens the baseline instead of drawing a rectangle around the field.
 - Search results must never collapse into blank space. Show a short empty state when nothing matches.
 - Empty index states explain the miss and offer a quiet reset action; never imply the archive itself is empty.
-- The active problem is marked with a title highlighter only. Do not use a left rail or card-like selected row inside the index.
+- The active problem is marked with a graphite title highlighter only. Do not use blue fill, a left rail, or a card-like selected row inside the index.
 - The index should never use a colored left rail for selection. Selection belongs to the text, not the container.
 
 ### Pattern Filters
