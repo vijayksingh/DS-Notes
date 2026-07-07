@@ -326,10 +326,10 @@ a:hover {
 }
 
 .meta-panel {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: var(--space-sm) var(--space-lg);
-  align-items: start;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem var(--space-lg);
+  align-items: baseline;
   padding: 0;
   border: 0;
   border-radius: 0;
@@ -339,19 +339,25 @@ a:hover {
 }
 
 .meta-item {
-  display: grid;
-  gap: 0.125rem;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.35rem;
   min-width: 0;
   max-width: none;
 }
 
 .meta-item strong,
 .meta-item a {
-  display: block;
-  font-size: var(--text-sm);
-  line-height: 1.35;
+  display: inline;
+  font-size: 0.82rem;
+  line-height: 1.25;
   overflow-wrap: anywhere;
   word-break: break-word;
+}
+
+.meta-item .label {
+  color: rgb(114 129 149 / 82%);
+  font-size: 0.68rem;
 }
 
 .study-strip {
@@ -735,8 +741,28 @@ a:hover {
 
   .sidebar {
     position: static;
+    display: grid;
+    grid-template-columns: minmax(13rem, 17rem) minmax(0, 1fr);
+    gap: var(--space-md) var(--space-lg);
+    align-items: start;
     height: auto;
     border-right: 0;
+    padding: 1.35rem 1.5rem;
+  }
+
+  .brand {
+    grid-row: span 2;
+    margin: 0;
+    padding: 0;
+  }
+
+  .search,
+  .filters {
+    margin: 0;
+  }
+
+  .problem-list {
+    grid-column: 1 / -1;
   }
 
   .workspace {
@@ -754,10 +780,6 @@ a:hover {
       linear-gradient(90deg, transparent 0 2.35rem, var(--margin-rule) 2.35rem 2.41rem, transparent 2.41rem),
       radial-gradient(circle, var(--dot) 0 1px, transparent 1.2px) 0 0 / var(--grid-step) var(--grid-step),
       var(--paper);
-  }
-
-  .meta-panel {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .study-strip {
@@ -787,6 +809,25 @@ a:hover {
   .sidebar,
   .shell {
     padding: var(--space-md);
+  }
+
+  .sidebar {
+    display: block;
+  }
+
+  .brand {
+    display: grid;
+    gap: var(--space-xs);
+    padding-bottom: var(--space-lg);
+    margin-bottom: var(--space-lg);
+  }
+
+  .search {
+    margin-bottom: var(--space-md);
+  }
+
+  .problem-list {
+    display: grid;
   }
 
   .shell {
@@ -833,7 +874,7 @@ a:hover {
   }
 
   .meta-panel {
-    grid-template-columns: 1fr;
+    gap: 0.28rem var(--space-md);
   }
 
   .study-strip {

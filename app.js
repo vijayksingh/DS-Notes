@@ -142,12 +142,18 @@ function renderProblemList() {
 }
 
 function renderMeta(problem) {
+  const sourceLabel = problem.source.name.split(":")[0] ?? problem.source.name;
   const canonical = problem.canonical
     ? `
       <div class="meta-item">
         <span class="label">Canonical</span>
-        <a href="${problem.canonical.url}" target="_blank" rel="noreferrer">
-          LeetCode ${problem.canonical.number}: ${problem.canonical.title}
+        <a
+          href="${problem.canonical.url}"
+          target="_blank"
+          rel="noreferrer"
+          title="${problem.canonical.title}"
+        >
+          ${problem.canonical.platform} ${problem.canonical.number}
         </a>
       </div>
     `
@@ -155,17 +161,19 @@ function renderMeta(problem) {
 
   els.meta.innerHTML = `
     <div class="meta-item">
-      <span class="label">Original</span>
-      <a href="${problem.source.url}" target="_blank" rel="noreferrer">${problem.source.name}</a>
+      <span class="label">Source</span>
+      <a href="${problem.source.url}" target="_blank" rel="noreferrer" title="${problem.source.name}">
+        ${sourceLabel}
+      </a>
     </div>
     ${canonical}
     <div class="meta-item">
-      <span class="label">Difficulty</span>
+      <span class="label">Level</span>
       <strong>${problem.difficulty}</strong>
     </div>
     <div class="meta-item">
-      <span class="label">Local Note</span>
-      <a href="${problem.notePath}">${problem.notePath}</a>
+      <span class="label">Note</span>
+      <a href="${problem.notePath}" title="${problem.notePath}">Markdown</a>
     </div>
   `;
 }
