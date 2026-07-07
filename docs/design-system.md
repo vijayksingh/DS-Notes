@@ -10,6 +10,7 @@ Decoration is allowed only when it supports recall or orientation.
 - **Blue ink** marks selection, source links, and active study affordances.
 - **Handwritten type** is for headings, labels, controls, and flashcard prompts.
 - **Body type** is for longer explanatory text.
+- **Focus states** must be visible and intentional. Native controls such as mobile disclosures use blue-ink focus treatment, not browser-default rings.
 
 ## Tokens
 
