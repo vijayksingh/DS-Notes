@@ -898,29 +898,46 @@ a:hover {
     position: static;
     height: auto;
     border-right: 0;
-    padding: 1.35rem 1.5rem;
+    padding: 1rem 1.25rem;
   }
 
   .index-content {
     display: grid;
-    grid-template-columns: minmax(13rem, 17rem) minmax(0, 1fr);
-    gap: var(--space-md) var(--space-lg);
+    grid-template-columns: minmax(11rem, 14rem) minmax(0, 1fr) minmax(12rem, 14rem);
+    grid-template-areas:
+      "brand search list"
+      "brand filters list";
+    gap: 0.7rem 1.2rem;
     align-items: start;
   }
 
   .brand {
-    grid-row: span 2;
+    grid-area: brand;
     margin: 0;
     padding: 0;
   }
 
-  .search,
-  .filters {
+  .search {
+    grid-area: search;
     margin: 0;
   }
 
+  .filters {
+    grid-area: filters;
+    gap: 0.35rem;
+    margin: 0;
+  }
+
+  .chip {
+    min-height: 1.85rem;
+    padding-inline: 0.55rem;
+    font-size: 0.84rem;
+  }
+
   .problem-list {
-    grid-column: 1 / -1;
+    grid-area: list;
+    align-self: center;
+    gap: 0.18rem;
   }
 
   .workspace {
@@ -954,6 +971,24 @@ a:hover {
 
   .study-strip > div:last-child {
     border-bottom: 0;
+  }
+}
+
+@media (min-width: 36.01rem) and (max-width: 48rem) {
+  .index-content {
+    grid-template-columns: minmax(11rem, 0.9fr) minmax(0, 1.35fr);
+    grid-template-areas:
+      "brand search"
+      "list filters";
+    gap: 0.75rem 1.15rem;
+  }
+
+  .problem-list {
+    align-self: start;
+  }
+
+  .filters {
+    align-content: start;
   }
 }
 
@@ -1049,6 +1084,7 @@ a:hover {
   .index-content {
     display: grid;
     grid-template-columns: 1fr;
+    grid-template-areas: none;
     gap: var(--space-sm);
     padding: var(--space-sm) 0 0.15rem;
     border-bottom: 1px dashed rgb(83 103 126 / 20%);
@@ -1059,6 +1095,7 @@ a:hover {
   }
 
   .search {
+    grid-area: auto;
     margin: 0;
   }
 
@@ -1070,6 +1107,7 @@ a:hover {
   }
 
   .problem-list {
+    grid-area: auto;
     display: grid;
     max-height: 12rem;
     overflow: auto;
@@ -1096,6 +1134,7 @@ a:hover {
   }
 
   .filters {
+    grid-area: auto;
     display: flex;
     flex-wrap: wrap;
     gap: 0.16rem 0.38rem;
