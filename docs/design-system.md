@@ -54,6 +54,7 @@ Filters are navigation aids, not primary actions.
 Flashcards are the main study object.
 
 - Controls stay visually secondary. Reveal/Hide is plain ink text with a subtle underline, never a filled button or loud highlighter.
+- On mobile, flashcard controls stay in one compact row so the card itself remains near the top of the revision flow.
 - Answers reveal inside the card language, not as alert panels.
 - Card movement should feel like moving through a small stack.
 
@@ -65,6 +66,7 @@ The core model is the fastest path to the problem intuition.
 - Use a stable ink rail instead of animated or generated brackets.
 - Labels should help scanning; the invariant and avoid text are the actual content.
 - Do not frame it as a card. It belongs on the notebook page itself.
+- On mobile, keep label/value rows compact. Do not stack every label above its value unless the content would otherwise overflow.
 
 ### Field Notes
 

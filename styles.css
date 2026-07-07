@@ -1115,7 +1115,8 @@ a:hover {
   }
 
   .study-strip {
-    padding-left: var(--space-md);
+    gap: 0.14rem;
+    padding-left: 0.78rem;
   }
 
   .study-strip strong,
@@ -1142,8 +1143,22 @@ a:hover {
     width: fit-content;
   }
 
-  .study-strip > div {
-    gap: var(--space-xs);
+  .study-strip > div,
+  .study-strip > div + div {
+    grid-template-columns: 4.9rem minmax(0, 1fr);
+    gap: 0.32rem;
+    align-items: baseline;
+    padding: 0;
+  }
+
+  .study-strip .label {
+    font-size: 0.68rem;
+    line-height: 1.2;
+  }
+
+  .study-strip strong {
+    font-size: 0.82rem;
+    line-height: 1.26;
   }
 
   .revision-layout,
@@ -1157,17 +1172,31 @@ a:hover {
   }
 
   .card-toolbar {
-    align-items: stretch;
-    flex-direction: column;
+    align-items: center;
+    flex-direction: row;
+    gap: var(--space-xs);
   }
 
   .toolbar-actions {
-    width: 100%;
-    justify-content: center;
+    width: auto;
+    justify-content: flex-end;
+    margin-left: auto;
+    gap: 0.22rem;
+  }
+
+  .toolbar-actions button:first-child,
+  .toolbar-actions button:last-child {
+    width: 2rem;
+  }
+
+  .toolbar-actions button {
+    min-height: 1.85rem;
+    padding-inline: 0.22rem;
   }
 
   #revealCard {
     flex: 0 0 auto;
+    min-width: 3.8rem;
   }
 
   .flashcard {
