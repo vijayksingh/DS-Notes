@@ -9,6 +9,7 @@ window.__dsNotesEnhancement = {
 
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const compactIndex = window.matchMedia("(max-width: 36rem)");
+const ACTIVE_PROBLEM_STORAGE_KEY = "ds-notes:active-problem-id";
 
 const enhancementReady = Promise.allSettled([
   import("https://esm.sh/rough-notation@0.5.1?bundle"),
@@ -39,8 +40,36 @@ const enhancementReady = Promise.allSettled([
   });
 
 
+function findProblem(value) {
+  if (!value) return null;
+  return (
+    window.DS_NOTES_PROBLEMS.find(
+      (problem) => problem.id === value || problem.slug === value
+    ) ?? null
+  );
+}
+
+function storedProblemId() {
+  try {
+    return window.localStorage.getItem(ACTIVE_PROBLEM_STORAGE_KEY);
+  } catch {
+    return null;
+  }
+}
+
+function initialProblemId() {
+  const queryProblem = new URLSearchParams(window.location.search).get("problem");
+  const problemFromUrl = findProblem(queryProblem);
+  if (problemFromUrl) return problemFromUrl.id;
+
+  const problemFromStorage = findProblem(storedProblemId());
+  if (problemFromStorage) return problemFromStorage.id;
+
+  return window.DS_NOTES_PROBLEMS[0]?.id;
+}
+
 const state = {
-  activeProblemId: window.DS_NOTES_PROBLEMS[0]?.id,
+  activeProblemId: initialProblemId(),
   activePattern: "All",
   cardIndex: 0,
   revealed: false,
@@ -127,6 +156,28 @@ function activeProblem() {
   return window.DS_NOTES_PROBLEMS.find((problem) => problem.id === state.activeProblemId);
 }
 
+function persistActiveProblem(problem) {
+  try {
+    window.localStorage.setItem(ACTIVE_PROBLEM_STORAGE_KEY, problem.id);
+  } catch {
+    // Storage can be unavailable in restricted browsing modes; the URL still works.
+  }
+
+  const url = new URL(window.location.href);
+  url.searchParams.set("problem", problem.slug ?? problem.id);
+  window.history.replaceState({}, "", `${url.pathname}${url.search}${url.hash}`);
+}
+
+function selectProblem(problemId) {
+  const problem = findProblem(problemId);
+  if (!problem) return;
+
+  state.activeProblemId = problem.id;
+  state.cardIndex = 0;
+  state.revealed = false;
+  persistActiveProblem(problem);
+}
+
 function filteredProblems() {
   const term = els.search.value.trim().toLowerCase();
   return window.DS_NOTES_PROBLEMS.filter((problem) => {
@@ -202,9 +253,7 @@ function renderProblemList() {
       <small>${problem.canonical ? `LC ${problem.canonical.number}` : problem.source.name} · ${problem.patterns.join(", ")}</small>
     `;
     button.addEventListener("click", () => {
-      state.activeProblemId = problem.id;
-      state.cardIndex = 0;
-      state.revealed = false;
+      selectProblem(problem.id);
       render();
       if (compactIndex.matches) {
         els.indexPanel.open = false;
