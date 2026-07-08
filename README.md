@@ -12,35 +12,53 @@ The idea is simple:
 
 ```text
 .
-├── index.html
-├── styles.css
-├── app.js
-├── data/
-│   └── problems.js
-├── notes/
-│   └── 0003-longest-substring-without-repeating-characters.md
+├── src/
+│   ├── components/
+│   │   └── ProblemNotebook.astro
+│   ├── data/
+│   │   └── problems.js
+│   ├── layouts/
+│   │   └── BaseLayout.astro
+│   ├── pages/
+│   │   └── index.astro
+│   ├── scripts/
+│   │   └── app.js
+│   └── styles/
+│       └── global.css
+├── public/
+│   ├── notes/
+│   │   └── 0003-longest-substring-without-repeating-characters.md
+│   └── scripts/
+│       └── app.js
+├── scripts/
+│   └── check-data.mjs
 └── templates/
     └── problem-note.md
 ```
 
 ## How to add a problem
 
-1. Copy `templates/problem-note.md` into `notes/`.
-2. Add a matching entry to `data/problems.js`.
+1. Copy `templates/problem-note.md` into `public/notes/`.
+2. Add a matching entry to `src/data/problems.js`.
 3. Keep the `canonical` section filled in when the problem exists on LeetCode.
-4. Write the cards as questions you want your future self to answer, not as polished explanations.
+4. Write the approach as an interview-sized paragraph, then write cards as questions you want your future self to answer.
+5. Run `npm run check:data`.
 
 ## Local review
 
-Open `index.html` in a browser. No build step is required.
-
-If a browser blocks local scripts, run a tiny static server:
+Run the Astro dev server:
 
 ```bash
-python3 -m http.server 5173
+npm run dev
 ```
 
-Then open `http://localhost:5173`.
+Then open `http://127.0.0.1:5173/`.
+
+To build the static site:
+
+```bash
+npm run build
+```
 
 ## Card writing rule
 
@@ -49,4 +67,3 @@ Each problem should preserve three kinds of memory:
 - **Approach**: what pattern unlocked the solution?
 - **Invariant**: what must stay true while the algorithm runs?
 - **Gotcha**: what mistake would make you fail this again?
-

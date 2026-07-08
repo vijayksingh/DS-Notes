@@ -1,4 +1,4 @@
-window.DS_NOTES_PROBLEMS = [
+export const problems = [
   {
     id: "leetcode-0003",
     slug: "longest-substring-without-repeating-characters",
