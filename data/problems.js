@@ -19,10 +19,10 @@ window.DS_NOTES_PROBLEMS = [
     summary:
       "Find the length of the longest contiguous slice of a string where every character is unique.",
     approach: [
-      "I would use two pointers: `right` expands the window by looking at the next character, and `left` shrinks the window when that character is already inside. Before inserting `s[right]`, I keep moving `left` and deleting from the set until `s[right]` is no longer present. Then I insert the character and update the best length from the valid window.",
+      "I would use a sliding window with two pointers and a set. `right` expands the window by looking at the next character, and the set tells me whether that character is already inside; if it is, `left` shrinks the window while I delete characters from the set. Once `s[right]` is no longer in the set, I insert it and update the best length from the valid window.",
     ],
     patternSummary:
-      "This is a sliding window problem because I need the longest contiguous substring, and a duplicate can be fixed by moving only the left edge.",
+      "This is sliding window with a set: the window gives me the contiguous substring, and the set lets me detect duplicates in O(1) while I expand and shrink.",
     invariant:
       "After I finish shrinking, the set represents the current window exactly, and that window has no repeated characters.",
     gotchas: [
@@ -39,7 +39,7 @@ window.DS_NOTES_PROBLEMS = [
     reviewPrompts: [
       "For `pwwkew`, I would point out that `wke` is valid because it is contiguous, while `pwke` is not a substring even though its characters are unique.",
       "My invariant is that after shrinking, the set and the current window describe the same characters, with no duplicates.",
-      "The runtime is O(n) because `right` only moves forward to expand and `left` only moves forward to shrink; each character is inserted once and removed at most once.",
+      "The runtime is O(n) because `right` only moves forward to expand and `left` only moves forward to shrink; the set insert/delete work happens at most once per character.",
       "The corner case I watch for is checking for the duplicate too late by inserting `s[right]` first and only then comparing `set.size` with the window length.",
     ],
     solutionLanguage: "JavaScript",
