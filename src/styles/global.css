@@ -31,6 +31,7 @@
   --grid-step: 1.7rem;
   --accent: #1f5e9f;
   --accent-soft: #e4effd;
+  --symbol: #476e68;
   --green: #23705c;
   --green-soft: #eef8f4;
   --yellow: #ffe593;
@@ -139,6 +140,16 @@ a {
 
 a:hover {
   text-decoration: underline;
+}
+
+.inline-symbol {
+  display: inline;
+  color: var(--symbol);
+  font-family: var(--mono);
+  font-size: 0.9em;
+  font-weight: 600;
+  line-height: inherit;
+  white-space: nowrap;
 }
 
 .shell {
@@ -586,12 +597,14 @@ a:hover {
   line-height: 1.5;
 }
 
+.problem-note,
 .approach-note {
   display: grid;
   gap: 0.72rem;
   max-width: 55rem;
 }
 
+.problem-note h3,
 .approach-note h3 {
   width: fit-content;
   margin: 0;
@@ -609,17 +622,27 @@ a:hover {
     );
 }
 
+.problem-copy,
 .approach-copy {
   display: grid;
   gap: 0.75rem;
   max-width: 74ch;
 }
 
+.problem-copy p,
 .approach-copy p {
   margin: 0;
   color: var(--text);
   font-size: var(--text-body);
   line-height: 1.68;
+}
+
+.problem-copy {
+  gap: 0.55rem;
+}
+
+.problem-copy p {
+  max-width: 72ch;
 }
 
 .revision-layout {

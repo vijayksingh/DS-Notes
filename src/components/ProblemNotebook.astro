@@ -5,6 +5,23 @@ const [initialProblem] = problems;
 const sourceLabel = initialProblem.source.name.split(":")[0] ?? initialProblem.source.name;
 const canonical = initialProblem.canonical;
 const initialCard = initialProblem.cards[0];
+
+function escapeHtml(value) {
+  return value.replace(/[&<>"']/g, (character) => {
+    const entities = {
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;",
+    };
+    return entities[character];
+  });
+}
+
+function renderInlineText(value = "") {
+  return escapeHtml(value).replace(/`([^`]+)`/g, '<code class="inline-symbol">$1</code>');
+}
 ---
 
 <main class="shell">
@@ -41,7 +58,7 @@ const initialCard = initialProblem.cards[0];
         <div>
           <p class="kicker" id="problemSource">{initialProblem.source.name}</p>
           <h2 id="problemTitle">{initialProblem.title}</h2>
-          <p class="summary" id="problemSummary">{initialProblem.summary}</p>
+          <p class="summary" id="problemSummary" set:html={renderInlineText(initialProblem.summary)}></p>
         </div>
         <div class="meta-panel" id="metaPanel">
           <div class="meta-item">
@@ -69,25 +86,37 @@ const initialCard = initialProblem.cards[0];
         </div>
       </header>
 
+      <section class="problem-note" aria-label="Problem statement">
+        <h3>Problem</h3>
+        <div class="problem-copy" id="problemStatement">
+          {(initialProblem.problemStatement ?? []).map((paragraph) => (
+            <p set:html={renderInlineText(paragraph)} />
+          ))}
+        </div>
+      </section>
+
       <section class="approach-note" aria-label="Approach">
         <h3>Approach</h3>
         <div class="approach-copy" id="approachText">
-          {initialProblem.approach.map((paragraph) => <p>{paragraph}</p>)}
+          {initialProblem.approach.map((paragraph) => <p set:html={renderInlineText(paragraph)} />)}
         </div>
       </section>
 
       <section class="study-strip" aria-label="Study snapshot">
         <div>
           <span class="label">Pattern</span>
-          <strong id="patternText">{initialProblem.patternSummary ?? initialProblem.patterns.join(" + ")}</strong>
+          <strong
+            id="patternText"
+            set:html={renderInlineText(initialProblem.patternSummary ?? initialProblem.patterns.join(" + "))}
+          ></strong>
         </div>
         <div>
           <span class="label">Invariant</span>
-          <strong id="invariantText">{initialProblem.invariant}</strong>
+          <strong id="invariantText" set:html={renderInlineText(initialProblem.invariant)}></strong>
         </div>
         <div>
           <span class="label">Avoid</span>
-          <strong id="gotchaText">{initialProblem.gotchas[0] ?? "-"}</strong>
+          <strong id="gotchaText" set:html={renderInlineText(initialProblem.gotchas[0] ?? "-")}></strong>
         </div>
       </section>
 
@@ -109,10 +138,15 @@ const initialCard = initialProblem.cards[0];
             <div class="deck-layer deck-layer-one" aria-hidden="true"></div>
             <div class="deck-layer deck-layer-two" aria-hidden="true"></div>
             <article class="flashcard">
-              <p class="card-question" id="cardQuestion">{initialCard.question}</p>
-              <div class="card-answer" id="cardAnswer" role="region" aria-labelledby="cardQuestion" hidden>
-                {initialCard.answer}
-              </div>
+              <p class="card-question" id="cardQuestion" set:html={renderInlineText(initialCard.question)}></p>
+              <div
+                class="card-answer"
+                id="cardAnswer"
+                role="region"
+                aria-labelledby="cardQuestion"
+                hidden
+                set:html={renderInlineText(initialCard.answer)}
+              ></div>
             </article>
           </div>
         </section>
@@ -127,7 +161,7 @@ const initialCard = initialProblem.cards[0];
               <li>
                 <button type="button" class="question-jump" aria-current={String(index === 0)}>
                   <span class="question-cue">{card.cue ?? `Card ${index + 1}`}</span>
-                  <span class="question-text">{card.question}</span>
+                  <span class="question-text" set:html={renderInlineText(card.question)}></span>
                 </button>
               </li>
             ))}
@@ -147,13 +181,13 @@ const initialCard = initialProblem.cards[0];
         <article>
           <h3>Approach Memory</h3>
           <div class="note-copy" id="ahaList">
-            {initialProblem.ahaClicks.map((note) => <p>{note}</p>)}
+            {initialProblem.ahaClicks.map((note) => <p set:html={renderInlineText(note)} />)}
           </div>
         </article>
         <article>
           <h3>Recall Checks</h3>
           <div class="note-copy" id="reviewList">
-            {initialProblem.reviewPrompts.map((note) => <p>{note}</p>)}
+            {initialProblem.reviewPrompts.map((note) => <p set:html={renderInlineText(note)} />)}
           </div>
         </article>
       </section>

@@ -3,6 +3,14 @@
 Structy problem, canonical match: LeetCode 3, Longest Substring Without Repeating Characters.
 Pattern: sliding window with a set.
 
+## Problem
+
+Given a string `s`, return the length of the longest substring without repeating characters.
+
+The answer is a length, not the substring itself. The substring must be contiguous, so skipped characters do not count.
+
+For `s = "pwwkew"`, the answer is `3` because `wke` is a valid substring, while `pwke` is not contiguous.
+
 ## Approach Memory
 
 I would use a sliding window with two pointers and a set. `right` expands the window by looking at the next character, and the set tells me whether that character is already inside; if it is, `left` shrinks the window while I delete characters from the set. Once `s[right]` is no longer in the set, I insert it and update the best length from the valid window.

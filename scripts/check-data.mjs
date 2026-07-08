@@ -15,6 +15,10 @@ for (const problem of problems) {
     throw new Error(`Missing approach copy for ${problem.id}`);
   }
 
+  if (!problem.problemStatement?.length) {
+    throw new Error(`Missing problem statement for ${problem.id}`);
+  }
+
   if (!problem.cards?.length) {
     throw new Error(`Missing flashcards for ${problem.id}`);
   }

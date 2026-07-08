@@ -88,6 +88,7 @@ const els = {
   title: document.querySelector("#problemTitle"),
   summary: document.querySelector("#problemSummary"),
   meta: document.querySelector("#metaPanel"),
+  problemStatement: document.querySelector("#problemStatement"),
   approach: document.querySelector("#approachText"),
   pattern: document.querySelector("#patternText"),
   invariant: document.querySelector("#invariantText"),
@@ -117,6 +118,10 @@ function escapeHtml(value) {
     };
     return entities[character];
   });
+}
+
+function renderInlineText(value = "") {
+  return escapeHtml(value).replace(/`([^`]+)`/g, '<code class="inline-symbol">$1</code>');
 }
 
 function highlightJavaScript(code) {
@@ -188,6 +193,7 @@ function filteredProblems() {
       problem.source.name,
       problem.canonical?.title,
       problem.summary,
+      ...(problem.problemStatement ?? []),
       ...problem.patterns,
       ...problem.gotchas,
       ...problem.ahaClicks,
@@ -306,8 +312,8 @@ function renderCard(problem) {
   const hasCards = cards.length > 0;
 
   els.counter.textContent = hasCards ? `${state.cardIndex + 1} / ${cards.length}` : "0 / 0";
-  els.question.textContent = card?.question ?? "No cards yet.";
-  els.answer.textContent = card?.answer ?? "";
+  els.question.innerHTML = renderInlineText(card?.question ?? "No cards yet.");
+  els.answer.innerHTML = renderInlineText(card?.answer ?? "");
   els.answer.hidden = !state.revealed;
   els.reveal.textContent = state.revealed ? "Hide" : "Reveal";
   els.reveal.setAttribute("aria-expanded", String(state.revealed));
@@ -433,7 +439,7 @@ function renderQuestionBank(problem) {
     cue.textContent = card.cue ?? `Card ${index + 1}`;
     const questionText = document.createElement("span");
     questionText.className = "question-text";
-    questionText.textContent = card.question;
+    questionText.innerHTML = renderInlineText(card.question);
     button.append(cue, questionText);
     button.addEventListener("click", () => {
       if (index === state.cardIndex) return;
@@ -452,13 +458,17 @@ function renderNoteParagraphs(element, items) {
   element.innerHTML = "";
   for (const item of items) {
     const paragraph = document.createElement("p");
-    paragraph.textContent = item;
+    paragraph.innerHTML = renderInlineText(item);
     element.append(paragraph);
   }
 }
 
 function renderApproach(problem) {
   renderNoteParagraphs(els.approach, problem.approach ?? []);
+}
+
+function renderProblemStatement(problem) {
+  renderNoteParagraphs(els.problemStatement, problem.problemStatement ?? []);
 }
 
 function renderSolution(problem) {
@@ -476,12 +486,13 @@ function renderProblem() {
   els.indexCurrentProblem.textContent = problem.title;
   els.source.textContent = problem.source.name;
   els.title.textContent = problem.title;
-  els.summary.textContent = problem.summary;
-  els.pattern.textContent = problem.patternSummary ?? problem.patterns.join(" + ");
-  els.invariant.textContent = problem.invariant;
-  els.gotcha.textContent = problem.gotchas[0] ?? "-";
+  els.summary.innerHTML = renderInlineText(problem.summary);
+  els.pattern.innerHTML = renderInlineText(problem.patternSummary ?? problem.patterns.join(" + "));
+  els.invariant.innerHTML = renderInlineText(problem.invariant);
+  els.gotcha.innerHTML = renderInlineText(problem.gotchas[0] ?? "-");
 
   renderMeta(problem);
+  renderProblemStatement(problem);
   renderApproach(problem);
   renderCard(problem);
   renderQuestionBank(problem);
