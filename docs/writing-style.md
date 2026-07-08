@@ -4,7 +4,7 @@ These notes are for recall after solving. The reader is future-me, not a strange
 
 ## The Shape
 
-A good note should read like a calm debrief. It should begin by saying what the problem is really asking and why a pattern started to fit. From there, it should describe the first approach I reached for, especially if that approach was wrong or incomplete. The most valuable part of the note is usually the failure point: the exact reason the first idea stopped making sense. After that, the note should explain the corrected invariant or approach in plain language, then connect that approach to a small example and the final code.
+A good note should read like a calm debrief, but the visible approach on the page should stay interview-sized. The approach should usually be one easy paragraph of two or three sentences: the pattern, the key invariant or repair step, and when the answer is updated. If there was a false start, capture it after the approach in a short paragraph instead of stretching the approach itself.
 
 The note should not feel like a pile of flashcards. Flashcards are useful for drilling, but the main note should rebuild the memory. If I solved the problem yesterday and open the note today, I should be able to read the approach in order and feel the original click come back.
 
@@ -18,7 +18,7 @@ The tone should be direct and conversational. Avoid sounding like official docum
 
 Prefer paragraphs over bullets. A bullet is allowed only when it is summarizing something after the explanation has already been rebuilt. If the bullet list becomes the main explanation, the note has failed. The reader should not have to stitch together six tiny facts to understand the approach.
 
-For problem pages, the bottom notes should also avoid fragmented list energy. They can be short, but they should read like compact observations or recall checks written in sentences, not like scattered labels.
+For problem pages, the bottom notes should also avoid fragmented list energy. Recall checks should read like things I would say to an interviewer: "My invariant is...", "The runtime is...", "The corner case I watch for is...". They should demonstrate that I understand the moving parts and edge cases, not merely ask me questions.
 
 ## What Matters Most
 

@@ -5,19 +5,9 @@ Pattern: sliding window with a set.
 
 ## Approach Memory
 
-The problem is asking for the longest contiguous piece of the string where every character is unique. The word that matters is contiguous. Once I notice that, this stops feeling like a "generate all substrings" problem and starts looking like a window problem: keep a valid slice, grow it when possible, and repair it when it breaks.
+I would solve this with a sliding window and a set: the right pointer tries to add a new character, and if that character is already inside the window, I move left until the duplicate is removed. The important detail is that I repair before admitting the right character, instead of adding first and then noticing `set.size !== window.length`. Once the window is valid again, I update the best length.
 
-My first idea was to keep a `Set`, keep expanding the window, and compare `set.size` with the current window length. If those two numbers differ, then the window must contain a duplicate, so I would shrink from the left.
-
-That idea is close, but the timing is wrong. By the time `set.size !== window.length`, I have already added or consumed the rightmost character that caused the duplicate. Now the set is telling me that something is wrong, but the window no longer has a clean story: I am repairing after admitting a character that should not have been admitted yet.
-
-The fix was to flip the order. Before adding `s[right]`, I ask whether the set already contains that character. If it does, I move `left` forward and delete characters from the set until that right character is no longer inside the window. Only then do I add the right character.
-
-That makes the invariant simple: after the repair step, the set represents exactly the current window, and the current window has no duplicate characters. Once that is true, I can safely compare the window length against the best answer.
-
-The phrase I want to remember is: right explores, left repairs. The right pointer tries to bring in a new character. The left pointer only moves when the new character would break uniqueness.
-
-For `pwwkew`, the first `pw` is fine. The next `w` is already in the set, so the left side moves until the old `w` is gone. Later, `wke` becomes the best window. The final `w` forces another repair, and the valid ending window becomes `kew`. The answer is `3`, and `pwke` is not allowed because it is not contiguous.
+My first instinct was close but slightly wrong: I wanted to add the right character, compare `set.size` with the window length, and shrink when those diverged. That detects the duplicate too late, because the right character has already been admitted. The cleaner invariant is that after repair, the set and the window describe the same contiguous substring with no duplicates.
 
 ## Code
 
@@ -62,10 +52,10 @@ module.exports = {
 
 ## Recall
 
-The invariant is that the current window has no duplicate characters after the shrink step finishes.
+My invariant is that after the repair step, the set and the current window describe the same characters, with no duplicates.
 
-The important mistake is checking for invalidity too late. Do not use `set.size !== window.length` as the main repair signal after admitting `right`. Check whether `s[right]` is already present, repair first, then add it.
+For `pwwkew`, I would point out that `wke` is valid because it is contiguous, while `pwke` is not a substring even though its characters are unique.
 
-The complexity is linear because neither pointer moves backward. Each character enters the set once and leaves it at most once.
+The runtime is O(n) because right only moves forward to explore and left only moves forward to repair; each character is added once and removed at most once.
 
-The small off-by-one check is that a window from `left` through `right` has length `right - left + 1`.
+The corner case I watch for is detecting the duplicate too late by adding the right character first and only then comparing `set.size` with the window length.

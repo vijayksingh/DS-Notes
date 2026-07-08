@@ -19,16 +19,14 @@ window.DS_NOTES_PROBLEMS = [
     summary:
       "Find the length of the longest contiguous slice of a string where every character is unique.",
     approach: [
-      "This problem becomes manageable once I treat the current substring as a window that must stay unique. The right pointer tries to bring in the next character, and the left pointer only moves when that next character would create a duplicate.",
-      "The mistake I initially made was trying to add the right character first and then compare `set.size` with the window length. That detects the duplicate too late. The cleaner approach is to check whether `s[right]` already exists in the set, shrink from the left until it does not, and only then add the right character.",
-      "After that repair step, the set and the window mean the same thing again: every character between `left` and `right` is unique. That is the moment when the window length is safe to compare against the best answer.",
+      "I would solve this with a sliding window and a set: the right pointer tries to add a new character, and if that character is already inside the window, I move left until the duplicate is removed. The important detail is that I repair before admitting the right character, instead of adding first and then noticing `set.size !== window.length`. Once the window is valid again, I update the best length.",
     ],
     patternSummary:
-      "Use a sliding window because the answer is a contiguous substring whose validity can be repaired locally instead of recomputed from scratch.",
+      "This is a sliding window problem because I need the longest contiguous substring, and a duplicate can be fixed by moving only the left edge.",
     invariant:
-      "After the shrink step finishes, the set contains exactly the characters in the current `left..right` window, and that window has no repeated characters.",
+      "After I finish shrinking, the set represents the current window exactly, and that window has no repeated characters.",
     gotchas: [
-      "Substring means the answer must be contiguous, so a unique collection of characters is not enough unless the window boundaries also stay valid.",
+      "A unique set of characters is not enough; the answer must come from one contiguous window.",
       "When a duplicate arrives, shrink only until that specific duplicate is gone.",
       "Update the answer after the window is valid again.",
       "Do not wait for `set.size !== windowLength` after adding right. Repair before admitting a duplicate.",
@@ -39,10 +37,10 @@ window.DS_NOTES_PROBLEMS = [
       "The click was the order of operations: make room for the right character before adding it, then score the window only after it is valid again.",
     ],
     reviewPrompts: [
-      "When reviewing `pwwkew`, say out loud why `wke` is valid and `pwke` is not, even though both contain unique characters.",
-      "Before writing code, restate the invariant: after repair, the set and the current window mean the same thing, and neither contains duplicates.",
-      "To justify the runtime, remember that both pointers only move forward, so every character is added once and removed at most once.",
-      "The false-start check is whether I am detecting the duplicate too late by comparing `set.size` to the window length after admitting the right character.",
+      "For `pwwkew`, I would point out that `wke` is valid because it is contiguous, while `pwke` is not a substring even though its characters are unique.",
+      "My invariant is that after the repair step, the set and the current window describe the same characters, with no duplicates.",
+      "The runtime is O(n) because right only moves forward to explore and left only moves forward to repair; each character is added once and removed at most once.",
+      "The corner case I watch for is detecting the duplicate too late by adding the right character first and only then comparing `set.size` with the window length.",
     ],
     solutionLanguage: "JavaScript",
     solutionCode: `const longestUniqueSubstring = (s) => {
