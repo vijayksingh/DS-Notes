@@ -24,16 +24,19 @@ window.DS_NOTES_PROBLEMS = [
       "Substring means contiguous. Do not accidentally solve for subsequence.",
       "When a duplicate arrives, shrink only until that specific duplicate is gone.",
       "Update the answer after the window is valid again.",
+      "Do not wait for `set.size !== windowLength` after adding right. Repair before admitting a duplicate.",
     ],
     ahaClicks: [
       "The right pointer explores; the left pointer repairs.",
       "You do not restart after a duplicate because everything before left is already disqualified for the current right.",
       "The set is not the answer. The window boundaries are the answer.",
+      "The order matters: make room for the right character before adding it.",
     ],
     reviewPrompts: [
       "Walk through `pwwkew` and say why the answer is `wke`, not `pwke`.",
       "Explain why each character is added and removed at most once.",
       "Describe the invariant before writing code.",
+      "Explain why comparing `set.size` to window length after adding right is the wrong repair signal.",
     ],
     cards: [
       {
@@ -52,6 +55,11 @@ window.DS_NOTES_PROBLEMS = [
           "Move left forward, removing characters from the set, until the duplicate copy has been removed. Then the right character can belong to a valid unique window.",
       },
       {
+        question: "Why is the set-size-vs-window-length approach a trap?",
+        answer:
+          "It notices the duplicate only after the right character has already been added. Instead, check `set.has(s[right])` first, shrink until that is false, then add the right character and score the valid window.",
+      },
+      {
         question: "Why is this O(n) instead of O(n²)?",
         answer:
           "The right pointer only moves forward, and the left pointer only moves forward. Every character enters the window once and leaves it at most once.",
@@ -64,4 +72,3 @@ window.DS_NOTES_PROBLEMS = [
     ],
   },
 ];
-

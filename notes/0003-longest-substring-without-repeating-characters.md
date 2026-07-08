@@ -21,6 +21,21 @@ Future-me phrase:
 
 > Right explores. Left repairs.
 
+## False Start
+
+My first instinct was: add the right character into a set, compare `set.size` with the current window length, and shrink when they differ.
+
+That feels natural, but it has a timing bug. By the time `set.size !== windowLength`, I have already consumed the rightmost character. If I then shrink from the left and remove characters from the set, I cannot cleanly reason about the duplicate right character that caused the problem, because it was admitted before the window was repaired.
+
+The better order is:
+
+1. Look at the right character before adding it.
+2. While the set already has that character, remove `s[left]` and move `left`.
+3. Now add the right character.
+4. Compare the valid window length against the best answer.
+
+So the key is not "detect invalid after adding." The key is "make room before admitting the duplicate."
+
 ## Invariant
 
 After the shrink step finishes, every character in the current window is unique.
@@ -33,12 +48,14 @@ That is why the current window length is safe to compare against the best answer
 - Use `right - left + 1` for the current length.
 - Do not clear the whole set when you see a duplicate. Shrink just enough.
 - Do not confuse substring with subsequence.
+- Do not use `set.size !== windowLength` as the main repair signal after adding the right character. Check whether the right character already exists before admitting it.
 
 ## Aha Clicks
 
 - The set is not storing the final substring. It is enforcing the current window invariant.
 - You never need to move `left` backwards because every discarded start is already worse for the current `right`.
 - The duplicate character tells you exactly when the window became invalid.
+- The order matters: repair first, then admit the right character, then score the window.
 
 ## Walkthrough Seed
 
@@ -69,3 +86,6 @@ Each pointer only moves forward. Each character is inserted once and removed at 
 
 Clearing the whole window on a duplicate loses useful work. Shrink just enough.
 
+### Why not just compare `set.size` with the window length?
+
+Because that detects the duplicate after the right character has already been admitted. It is cleaner to check `set.has(s[right])` first, shrink until that is false, then add the right character into a valid window.
