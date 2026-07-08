@@ -59,6 +59,7 @@ const els = {
   title: document.querySelector("#problemTitle"),
   summary: document.querySelector("#problemSummary"),
   meta: document.querySelector("#metaPanel"),
+  approach: document.querySelector("#approachText"),
   pattern: document.querySelector("#patternText"),
   invariant: document.querySelector("#invariantText"),
   gotcha: document.querySelector("#gotchaText"),
@@ -369,7 +370,7 @@ async function animateCardChange(updateState, direction = 1) {
 }
 
 function renderQuestionBank(problem) {
-  els.questionCount.textContent = `${problem.cards.length} prompts`;
+  els.questionCount.textContent = `${problem.cards.length} cards`;
   els.questions.innerHTML = "";
 
   for (const [index, card] of problem.cards.entries()) {
@@ -378,10 +379,13 @@ function renderQuestionBank(problem) {
     button.type = "button";
     button.className = "question-jump";
     button.setAttribute("aria-current", String(index === state.cardIndex));
+    const cue = document.createElement("span");
+    cue.className = "question-cue";
+    cue.textContent = card.cue ?? `Card ${index + 1}`;
     const questionText = document.createElement("span");
     questionText.className = "question-text";
     questionText.textContent = card.question;
-    button.append(questionText);
+    button.append(cue, questionText);
     button.addEventListener("click", () => {
       if (index === state.cardIndex) return;
       const direction = index >= state.cardIndex ? 1 : -1;
@@ -395,13 +399,17 @@ function renderQuestionBank(problem) {
   }
 }
 
-function renderListItems(element, items) {
+function renderNoteParagraphs(element, items) {
   element.innerHTML = "";
   for (const item of items) {
-    const li = document.createElement("li");
-    li.textContent = item;
-    element.append(li);
+    const paragraph = document.createElement("p");
+    paragraph.textContent = item;
+    element.append(paragraph);
   }
+}
+
+function renderApproach(problem) {
+  renderNoteParagraphs(els.approach, problem.approach ?? []);
 }
 
 function renderSolution(problem) {
@@ -420,15 +428,16 @@ function renderProblem() {
   els.source.textContent = problem.source.name;
   els.title.textContent = problem.title;
   els.summary.textContent = problem.summary;
-  els.pattern.textContent = problem.patterns.join(" + ");
+  els.pattern.textContent = problem.patternSummary ?? problem.patterns.join(" + ");
   els.invariant.textContent = problem.invariant;
   els.gotcha.textContent = problem.gotchas[0] ?? "-";
 
   renderMeta(problem);
+  renderApproach(problem);
   renderCard(problem);
   renderQuestionBank(problem);
-  renderListItems(els.aha, problem.ahaClicks);
-  renderListItems(els.review, problem.reviewPrompts);
+  renderNoteParagraphs(els.aha, problem.ahaClicks);
+  renderNoteParagraphs(els.review, problem.reviewPrompts);
   renderSolution(problem);
   window.requestAnimationFrame(renderRoughAnnotations);
 }

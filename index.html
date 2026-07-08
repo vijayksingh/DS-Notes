@@ -8,7 +8,7 @@
       name="description"
       content="Problem-by-problem data-structure flashcards for intuition, gotchas, and review."
     />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css?v=writing1" />
   </head>
   <body>
     <main class="shell">
@@ -51,6 +51,11 @@
             <div class="meta-panel" id="metaPanel"></div>
           </header>
 
+          <section class="approach-note" aria-label="Approach">
+            <h3>Approach</h3>
+            <div class="approach-copy" id="approachText"></div>
+          </section>
+
           <section class="study-strip" aria-label="Study snapshot">
             <div>
               <span class="label">Pattern</span>
@@ -92,7 +97,7 @@
 
             <aside class="question-bank" aria-label="Question bank">
               <div class="section-heading">
-                <span class="label">Question Bank</span>
+                <span class="label">Recall Path</span>
                 <strong id="questionCount">0 prompts</strong>
               </div>
               <ol id="questionList"></ol>
@@ -109,19 +114,19 @@
 
           <section class="notes-grid" aria-label="Problem notes">
             <article>
-              <h3>Aha Clicks</h3>
-              <ul id="ahaList"></ul>
+              <h3>Approach Memory</h3>
+              <div class="note-copy" id="ahaList"></div>
             </article>
             <article>
-              <h3>Review Prompts</h3>
-              <ul id="reviewList"></ul>
+              <h3>Recall Checks</h3>
+              <div class="note-copy" id="reviewList"></div>
             </article>
           </section>
         </article>
       </section>
     </main>
 
-    <script src="data/problems.js?v=rough1"></script>
-    <script type="module" src="app.js?v=rough1"></script>
+    <script src="data/problems.js?v=writing1"></script>
+    <script type="module" src="app.js?v=writing1"></script>
   </body>
 </html>

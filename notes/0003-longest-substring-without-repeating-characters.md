@@ -1,72 +1,23 @@
 # Longest Unique Substring
 
-- Source: Structy, `longest-unique-substring`
-- Canonical: LeetCode 3, Longest Substring Without Repeating Characters
-- Pattern: Sliding Window, Hash Set, Two Pointers
-- Difficulty: Medium
+Structy problem, canonical match: LeetCode 3, Longest Substring Without Repeating Characters.
+Pattern: sliding window with a set.
 
-## Problem Memory
+## Approach Memory
 
-Find the longest contiguous piece of a string where no character repeats.
+The problem is asking for the longest contiguous piece of the string where every character is unique. The word that matters is contiguous. Once I notice that, this stops feeling like a "generate all substrings" problem and starts looking like a window problem: keep a valid slice, grow it when possible, and repair it when it breaks.
 
-The important word is **contiguous**. This is a substring problem, not a subsequence problem.
+My first idea was to keep a `Set`, keep expanding the window, and compare `set.size` with the current window length. If those two numbers differ, then the window must contain a duplicate, so I would shrink from the left.
 
-## Intuition
+That idea is close, but the timing is wrong. By the time `set.size !== window.length`, I have already added or consumed the rightmost character that caused the duplicate. Now the set is telling me that something is wrong, but the window no longer has a clean story: I am repairing after admitting a character that should not have been admitted yet.
 
-Keep a window that represents the current unique substring.
+The fix was to flip the order. Before adding `s[right]`, I ask whether the set already contains that character. If it does, I move `left` forward and delete characters from the set until that right character is no longer inside the window. Only then do I add the right character.
 
-The right pointer tries to grow the window. If the new character breaks uniqueness, the left pointer repairs the window by moving forward until the duplicate is removed.
+That makes the invariant simple: after the repair step, the set represents exactly the current window, and the current window has no duplicate characters. Once that is true, I can safely compare the window length against the best answer.
 
-Future-me phrase:
+The phrase I want to remember is: right explores, left repairs. The right pointer tries to bring in a new character. The left pointer only moves when the new character would break uniqueness.
 
-> Right explores. Left repairs.
-
-## False Start
-
-My first instinct was: add the right character into a set, compare `set.size` with the current window length, and shrink when they differ.
-
-That feels natural, but it has a timing bug. By the time `set.size !== windowLength`, I have already consumed the rightmost character. If I then shrink from the left and remove characters from the set, I cannot cleanly reason about the duplicate right character that caused the problem, because it was admitted before the window was repaired.
-
-The better order is:
-
-1. Look at the right character before adding it.
-2. While the set already has that character, remove `s[left]` and move `left`.
-3. Now add the right character.
-4. Compare the valid window length against the best answer.
-
-So the key is not "detect invalid after adding." The key is "make room before admitting the duplicate."
-
-## Invariant
-
-After the shrink step finishes, every character in the current window is unique.
-
-That is why the current window length is safe to compare against the best answer.
-
-## Gotchas
-
-- Update the answer only after the window is valid.
-- Use `right - left + 1` for the current length.
-- Do not clear the whole set when you see a duplicate. Shrink just enough.
-- Do not confuse substring with subsequence.
-- Do not use `set.size !== windowLength` as the main repair signal after adding the right character. Check whether the right character already exists before admitting it.
-
-## Aha Clicks
-
-- The set is not storing the final substring. It is enforcing the current window invariant.
-- You never need to move `left` backwards because every discarded start is already worse for the current `right`.
-- The duplicate character tells you exactly when the window became invalid.
-- The order matters: repair first, then admit the right character, then score the window.
-
-## Walkthrough Seed
-
-For `pwwkew`:
-
-- Start with `pw`.
-- The next `w` creates a duplicate, so move `left` past the old `w`.
-- Continue with `wke`.
-- The final `w` forces a shrink again, leaving `kew`.
-
-The best length is `3`.
+For `pwwkew`, the first `pw` is fine. The next `w` is already in the set, so the left side moves until the old `w` is gone. Later, `wke` becomes the best window. The final `w` forces another repair, and the valid ending window becomes `kew`. The answer is `3`, and `pwke` is not allowed because it is not contiguous.
 
 ## Code
 
@@ -109,24 +60,12 @@ module.exports = {
 };
 ```
 
-## Review Cards
+## Recall
 
-### What pattern should this trigger?
+The invariant is that the current window has no duplicate characters after the shrink step finishes.
 
-Longest contiguous substring with a validity condition means sliding window.
+The important mistake is checking for invalidity too late. Do not use `set.size !== window.length` as the main repair signal after admitting `right`. Check whether `s[right]` is already present, repair first, then add it.
 
-### What must stay true about the window?
+The complexity is linear because neither pointer moves backward. Each character enters the set once and leaves it at most once.
 
-After shrinking, it contains no repeated characters.
-
-### Why is the algorithm linear?
-
-Each pointer only moves forward. Each character is inserted once and removed at most once.
-
-### What mistake should I watch for?
-
-Clearing the whole window on a duplicate loses useful work. Shrink just enough.
-
-### Why not just compare `set.size` with the window length?
-
-Because that detects the duplicate after the right character has already been admitted. It is cleaner to check `set.has(s[right])` first, shrink until that is false, then add the right character into a valid window.
+The small off-by-one check is that a window from `left` through `right` has length `right - left + 1`.

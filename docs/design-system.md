@@ -2,6 +2,7 @@
 
 DS Notes should feel like a calm study notebook: tactile, readable, and quick to scan.
 Decoration is allowed only when it supports recall or orientation.
+Writing guidance lives in `docs/writing-style.md`; interface copy and notes should follow that memory-first style.
 
 ## Foundations
 
@@ -74,13 +75,14 @@ Filters are navigation aids, not primary actions.
 
 ### Question Bank
 
-The question bank is a table of contents for the memory card stack.
+The question bank is a recall path for the memory card stack.
 
 - It should orient the current card without becoming the main visual target.
 - On wide desktop, it may sit beside the flashcard as a quiet side index to use the notebook width efficiently.
 - On tablet and mobile, stack it below the flashcard so prompts keep readable line lengths.
+- Each row should have a short cue label that explains the role of the prompt: pattern, invariant, repair, false start, cost, boundary, etc.
 - Prompt text uses the body font for scan speed. Keep handwriting for labels and numbers, not multi-line prompt copy.
-- Active state uses the prompt number and a low inline highlighter. Avoid full blue link styling.
+- Active state uses the prompt number, cue label, and a low inline highlighter. Avoid full blue link styling.
 - Prompt rows stay unboxed; hover can add a faint inline mark but not a filled row.
 - Keyboard focus follows the same inline system: strengthen the prompt text highlighter and number, then add a tiny ink-dot cue when needed. Never outline the full row.
 
@@ -103,10 +105,11 @@ Flashcards are the main study object.
 
 The core model is the fastest path to the problem intuition.
 
+- It must not be the only explanation on the page. A readable approach narrative should appear before it.
 - Keep it compact and close to the problem header.
 - Do not use a colored left rail here; the section label and compact rows should carry hierarchy.
-- Labels should help scanning; the invariant and avoid text are the actual content.
-- Treat the pattern as the recognition hook. Invariant and avoid text should read like body notes, not three equally bold headings.
+- Labels should help scanning, but the values must be complete enough to make sense without decoding shorthand.
+- Treat the pattern as the recognition hook. Invariant and avoid text should read like body notes, not compressed tags.
 - Do not frame it as a card. It belongs on the notebook page itself.
 - On tablet, preserve label/value rows. Do not stack labels above values unless the viewport is truly too narrow.
 - On mobile, keep label/value rows compact. Do not stack every label above its value unless the content would otherwise overflow.
@@ -116,8 +119,9 @@ The core model is the fastest path to the problem intuition.
 Field notes are the bottom revision lists.
 
 - They should feel like written annotations, not generic markdown bullets.
-- Aha lists use small blue ink marks.
-- Review prompt lists use quiet numbered marks for repeatable practice.
+- Prefer short paragraphs that preserve the solving memory over fragmented list items.
+- Small ink ticks can orient the paragraphs, but the text should read as complete thoughts.
+- Avoid numbered review lists unless the order itself matters.
 - Headings can use a soft highlighter band; avoid boxes around these sections.
 
 ### Reference Code
