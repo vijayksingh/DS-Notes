@@ -4,7 +4,7 @@ These notes are for recall after solving. The reader is future-me, not a strange
 
 ## The Shape
 
-A good note should read like a calm debrief, but the visible approach on the page should stay interview-sized. The approach should usually be one easy paragraph of two or three sentences: the pattern, the key invariant or repair step, and when the answer is updated. If there was a false start, capture it after the approach in a short paragraph instead of stretching the approach itself.
+A good note should read like a calm debrief, but the visible approach on the page should stay interview-sized. The approach should usually be one easy paragraph of two or three sentences: the pattern, what the main pointers or data structure do, and when the answer is updated. If there was a false start, capture it after the approach in a short paragraph instead of stretching the approach itself.
 
 The note should not feel like a pile of flashcards. Flashcards are useful for drilling, but the main note should rebuild the memory. If I solved the problem yesterday and open the note today, I should be able to read the approach in order and feel the original click come back.
 

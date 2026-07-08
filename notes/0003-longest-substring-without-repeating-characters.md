@@ -5,9 +5,9 @@ Pattern: sliding window with a set.
 
 ## Approach Memory
 
-I would solve this with a sliding window and a set: the right pointer tries to add a new character, and if that character is already inside the window, I move left until the duplicate is removed. The important detail is that I repair before admitting the right character, instead of adding first and then noticing `set.size !== window.length`. Once the window is valid again, I update the best length.
+I would use two pointers: `right` expands the window by looking at the next character, and `left` shrinks the window when that character is already inside. Before inserting `s[right]`, I keep moving `left` and deleting from the set until `s[right]` is no longer present. Then I insert the character and update the best length from the valid window.
 
-My first instinct was close but slightly wrong: I wanted to add the right character, compare `set.size` with the window length, and shrink when those diverged. That detects the duplicate too late, because the right character has already been admitted. The cleaner invariant is that after repair, the set and the window describe the same contiguous substring with no duplicates.
+My first instinct was close but slightly wrong: I wanted to add the right character, compare `set.size` with the window length, and shrink when those diverged. That detects the duplicate too late, because the right character has already been inserted. The cleaner invariant is that after shrinking, the set and the window describe the same contiguous substring with no duplicates.
 
 ## Code
 
@@ -52,10 +52,10 @@ module.exports = {
 
 ## Recall
 
-My invariant is that after the repair step, the set and the current window describe the same characters, with no duplicates.
+My invariant is that after shrinking, the set and the current window describe the same characters, with no duplicates.
 
 For `pwwkew`, I would point out that `wke` is valid because it is contiguous, while `pwke` is not a substring even though its characters are unique.
 
-The runtime is O(n) because right only moves forward to explore and left only moves forward to repair; each character is added once and removed at most once.
+The runtime is O(n) because `right` only moves forward to expand and `left` only moves forward to shrink; each character is inserted once and removed at most once.
 
-The corner case I watch for is detecting the duplicate too late by adding the right character first and only then comparing `set.size` with the window length.
+The corner case I watch for is checking for the duplicate too late by inserting `s[right]` first and only then comparing `set.size` with the window length.
