@@ -72,7 +72,50 @@ const els = {
   review: document.querySelector("#reviewList"),
   questionCount: document.querySelector("#questionCount"),
   questions: document.querySelector("#questionList"),
+  solutionLanguage: document.querySelector("#solutionLanguage"),
+  solutionCode: document.querySelector("#solutionCode"),
 };
+
+function escapeHtml(value) {
+  return value.replace(/[&<>"']/g, (character) => {
+    const entities = {
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;",
+    };
+    return entities[character];
+  });
+}
+
+function highlightJavaScript(code) {
+  const tokenPattern =
+    /(\/\/[^\n]*|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*'|`(?:\\.|[^`\\])*`|\b(?:const|let|for|if|while|return|module|exports|new)\b|\b\d+(?:\.\d+)?\b)/g;
+
+  let highlighted = "";
+  let cursor = 0;
+
+  for (const match of code.matchAll(tokenPattern)) {
+    const token = match[0];
+    const index = match.index ?? 0;
+    highlighted += escapeHtml(code.slice(cursor, index));
+
+    if (token.startsWith("//")) {
+      highlighted += `<span class="syntax-comment">${escapeHtml(token)}</span>`;
+    } else if (/^["'`]/.test(token)) {
+      highlighted += `<span class="syntax-string">${escapeHtml(token)}</span>`;
+    } else if (/^\d/.test(token)) {
+      highlighted += `<span class="syntax-number">${escapeHtml(token)}</span>`;
+    } else {
+      highlighted += `<span class="syntax-keyword">${escapeHtml(token)}</span>`;
+    }
+
+    cursor = index + token.length;
+  }
+
+  return highlighted + escapeHtml(code.slice(cursor));
+}
 
 function uniquePatterns() {
   const patterns = window.DS_NOTES_PROBLEMS.flatMap((problem) => problem.patterns);
@@ -361,6 +404,14 @@ function renderListItems(element, items) {
   }
 }
 
+function renderSolution(problem) {
+  const code = problem.solutionCode?.trim();
+  els.solutionLanguage.textContent = problem.solutionLanguage ?? "Code";
+  els.solutionCode.innerHTML = code
+    ? highlightJavaScript(code)
+    : '<span class="syntax-comment">// No reference solution added yet.</span>';
+}
+
 function renderProblem() {
   const problem = activeProblem();
   if (!problem) return;
@@ -378,6 +429,7 @@ function renderProblem() {
   renderQuestionBank(problem);
   renderListItems(els.aha, problem.ahaClicks);
   renderListItems(els.review, problem.reviewPrompts);
+  renderSolution(problem);
   window.requestAnimationFrame(renderRoughAnnotations);
 }
 

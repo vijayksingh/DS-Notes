@@ -68,6 +68,47 @@ For `pwwkew`:
 
 The best length is `3`.
 
+## Code
+
+```js
+const longestUniqueSubstring = (s) => {
+  const set = new Set()
+  let window = ""
+  let maxWindow = 0
+  let left = 0
+  let right = 0
+
+  for (right; right < s.length; right++) {
+    const char = s[right];
+
+    if(set.has(char)) {
+      // shrink condition arrived
+      while(set.has(char)) {
+        window = window.slice(1)
+        set.delete(s[left])
+        left++
+      }
+    }
+
+    // now the right char is not in set anymore
+    window += char
+    set.add(char)
+
+    // we added and now we will compute the maxWindow size
+    if(set.size === window.length) {
+      maxWindow = Math.max(window.length, maxWindow)
+    }
+
+  }
+
+  return maxWindow
+};
+
+module.exports = {
+  longestUniqueSubstring,
+};
+```
+
 ## Review Cards
 
 ### What pattern should this trigger?

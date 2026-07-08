@@ -119,3 +119,12 @@ Field notes are the bottom revision lists.
 - Aha lists use small blue ink marks.
 - Review prompt lists use quiet numbered marks for repeatable practice.
 - Headings can use a soft highlighter band; avoid boxes around these sections.
+
+### Reference Code
+
+Reference code is a secondary verification surface, not the main study object.
+
+- Place code after the flashcards and before field notes so it supports recall without interrupting it.
+- Use a light ruled paper treatment, not a dark editor theme or generic card.
+- Syntax color should improve scanning: blue for language structure, warm ink for strings, green for numbers, muted ink for comments.
+- Keep horizontal overflow inside the code block. Code must never create page-level horizontal scrolling.
