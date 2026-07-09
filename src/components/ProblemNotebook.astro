@@ -5,6 +5,10 @@ const [initialProblem] = problems;
 const sourceLabel = initialProblem.source.name.split(":")[0] ?? initialProblem.source.name;
 const canonical = initialProblem.canonical;
 const initialCard = initialProblem.cards[0];
+const baseUrl = import.meta.env.BASE_URL;
+const assetBase = baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`;
+const scriptPath = `${assetBase}scripts/app.js`;
+const initialNoteHref = `${assetBase}${initialProblem.notePath}`;
 
 function escapeHtml(value) {
   return value.replace(/[&<>"']/g, (character) => {
@@ -81,7 +85,7 @@ function renderInlineText(value = "") {
           </div>
           <div class="meta-item">
             <span class="label">Note</span>
-            <a href={`/${initialProblem.notePath}`} title={initialProblem.notePath}>Markdown</a>
+            <a href={initialNoteHref} title={initialProblem.notePath}>Markdown</a>
           </div>
         </div>
       </header>
@@ -198,4 +202,4 @@ function renderInlineText(value = "") {
 <script define:vars={{ problems }}>
   window.DS_NOTES_PROBLEMS = problems;
 </script>
-<script type="module" src="/scripts/app.js"></script>
+<script type="module" src={scriptPath}></script>
